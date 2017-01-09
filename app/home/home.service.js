@@ -90,14 +90,15 @@
 				return $resource(AppConstant.WEB_URL+'/resources/data/biddingDetails.json');				
 
 			},
-			"getDetailsUsingHttp":function(data , clb){
+			"getDetailsUsingHttp":function(data, clb){				
 				return $http({
 				    method: 'POST',
 				    url: AppConstant.APP_URL+'/bidding/getNewBid',
-				    data: data,
+				    data: $httpParamSerializer(data),
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(response){
-					console.log(response);
+					clb(response) ;
+				}).error(function(response){
 					clb(response) ;
 				});
 			},
@@ -108,10 +109,8 @@
 				    data: $httpParamSerializer(data),
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(response){
-					console.log(response);
 					clb(response) ;
-				}).error(function(){
-					console.log(response);
+				}).error(function(response){
 					clb(response) ;
 				});
 			},

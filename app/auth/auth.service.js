@@ -1,7 +1,7 @@
 (function(){
 	
 	angular.module('myApp.authService',[])
-	.factory('AuthServ',function($resource){
+	.factory('AuthServ',function($resource, $http, $httpParamSerializer, AppConstant){
 		var userInfo = {};
 		return {
 			'userDetails':function(){
@@ -10,8 +10,17 @@
 			'setUserDetails' : function(user){
 				userInfo = user;
 			},
-			'login': function(){
-				return $resource('http://localhost:3000/resources/data/login.json',{},{specialAction: {method: 'GET'}});				
+			'login': function(data,clb){
+				return $http({
+				    method: 'POST',
+				    url: AppConstant.APP_URL+'/user/login',
+				    data: $httpParamSerializer(data),
+				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(function(response){
+					clb(response) ;
+				}).error(function(response){
+					clb(response) ;
+				});				
 			}
 		};
 	});

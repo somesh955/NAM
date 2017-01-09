@@ -3,7 +3,7 @@
 
 	angular.module('myApp.homeCtrl',[])
 
-	.controller('homeController', function($scope, BiddingServ){        
+	.controller('homeController', function($scope, BiddingServ, AuthServ, UtilsServ, growl, LoggerServ){        
 
 		$scope.onInIt = function(){	
 			$scope.autocolumn = BiddingServ.getColumnList();
@@ -20,30 +20,47 @@
 		};
 
         $scope.getDetails = function(){
-        	var requestData = 'orgId=1&oprId=49&refVal=2016050491330000024&userType=M';
-        	BiddingServ.getDetailsUsingHttp(requestData, function(response){
-				$scope.bidList = response.listNewBid;
+			var user = AuthServ.userDetails()
+			var requestData = {};
+			requestData.orgId = user.orgId;
+			requestData.oprId = user.oprId;
+			requestData.refVal = user.refVal;
+			requestData.userType = user.userType;
+        	BiddingServ.getDetailsUsingHttp({"getNewBid":requestData}, function(response){
+        		if(response.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					growl.success("Bid list retrive successfully !!!");
+					$scope.bidList = response.listNewBid;
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.errMsg);
+
+				}
 	        });
         };
 
         $scope.postBid = function(obj, bidRate){
-        	var data = {
-        		  "bidType": obj.bidType,
-				  "startDate": obj.startDate,
-				  "endDate": obj.endDate,
-				  "extendedDate": obj.extendedDate,
-				  "auctionBidSubmission": {
-				    "orgId": obj.orgId,
-				    "oprId": obj.oprId,
-				    "lotId": obj.lotId,
-				    "traderId": obj.lotId,
-				    "bidRate": bidRate,
-				    "createdBy": new Date(),
-				    "bidTranId": obj.tranId
-				  }
-				};
-        	BiddingServ.doBid(data, function(response){
-				console.log(response);
+        	var bidData = {};
+    		bidData.bidType = obj.bidType;
+			bidData.startDate = obj.startDate;
+			bidData.endDate = obj.endDate;
+			bidData.extendedDate = obj.extendedDate;
+			bidData.orgId = obj.orgId;
+			bidData.oprId = obj.oprId;
+			bidData.lotId = obj.lotId;
+			bidData.traderId = obj.lotId;
+			bidData.bidRate = bidRate;
+			bidData.createdBy = new Date();
+			bidData.bidTranId = obj.tranId;				 
+				
+        	BiddingServ.doBid({"auctionBidSubmission":bidData}, function(response){
+        		if(response.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					growl.success("Bid quated successfully !!!");
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.errMsg);
+				}
 	        });
         };
 

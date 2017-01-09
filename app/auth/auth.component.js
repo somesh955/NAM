@@ -3,16 +3,18 @@
 
 	angular.module('myApp.authCtrl',[])
 
-	.controller('authController', function($scope, $rootScope,AuthServ, $state, UtilsServ, growl){
+	.controller('authController', function($scope, $rootScope,AuthServ, $state, UtilsServ, growl, LoggerServ){
         $scope.login = function(){
-        	AuthServ.login().get({"data":$scope.user},function(response){
-        		if(response.status == UtilsServ.responseType.EXECUTED){
-        			growl.success(response.message);
+        	AuthServ.login({"verifyUserRequest":$scope.user},function(response){
+        		if(response.statusMsg === UtilsServ.responseType.EXECUTED){
+                    LoggerServ.log(response);
+        			growl.success("User Login Successfully!!!");
                     $rootScope.isLogin = true;
-					AuthServ.setUserDetails(response.data[0]);
+					AuthServ.setUserDetails(response.responseHeader[0]);
     				$state.go('dashboard');
         		}else{
-        			growl.error(response.Message);
+                    LoggerServ.log(response);
+        			growl.error(response.errMsg);
         		}        		
         	});
         };

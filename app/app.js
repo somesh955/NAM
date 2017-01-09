@@ -1,11 +1,12 @@
  (function(){
  	'use-strict',
 
- 	 angular.module('myApp', ['ngResource','ui.router','myApp.routes','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate'])
+ 	 angular.module('myApp', ['ngResource','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate'])
  	 .constant('AppConstant',{
- 	 		"APP_URL":"http://192.168.0.85:8080/NamWebSrv/rest/mobile",
+ 	 		"APP_URL":"http://182.18.139.136/NamWebService/1.0",
  	 		"WEB_URL":"http://localhost:3000/",
- 	 		"VERSION":"0.0.1"
+ 	 		"VERSION":"0.0.1",
+ 	 		"DEV_MODE": true 
  	 })
  	 .config(['$httpProvider','$mdThemingProvider','growlProvider',function($httpProvider, $mdThemingProvider, growlProvider){
  	 		$httpProvider.defaults.useXDomain = true;
