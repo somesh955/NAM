@@ -1,15 +1,15 @@
 <div class="container">
-    <h1 class="welcome text-center">Welcome to NAM</h1>
+    <h1 class="welcome text-center">{{'Welcome_text' | translate}}</h1>
         <div class="card card-container">
-        <h2 class='login_title text-center'>Login</h2>
+        <h2 class='login_title text-center'>{{'login_title' | translate}}</h2>
         <hr>
         <form class="form-signin" ng-submit="login();">
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">Email</p>
+            <p class="input_title">{{'email' | translate}}</p>
             <input type="text" id="inputEmail" ng-model="user.loginId" class="login_box" placeholder="user@micropro.com" required autofocus>
-            <p class="input_title">Password</p>
+            <p class="input_title">{{'password' | translate}}</p>
             <input type="password" id="inputPassword" ng-model="user.password" class="login_box" placeholder="******" required>
-            <button class="btn btn-lg btn-primary" type="submit">Login</button>
+            <button class="btn btn-lg btn-primary" type="submit">{{'login_btn' | translate}}</button>
         </form><!-- /form -->
     </div><!-- /card-container -->
 </div><!-- /container -->

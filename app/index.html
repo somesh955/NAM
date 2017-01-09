@@ -1,18 +1,20 @@
 <!DOCYTPE html>
 <html lang="en" >
 <head>
+  <title>Welcome to NAM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="resources/css/angular-material.min.css">
   <link rel="stylesheet" href="resources/css/bootstrap.min.css">
   <link rel="stylesheet" href="resources/css/md-data-table.min.css">
-  <link rel="stylesheet" href="resources/css/style.css">
   <link rel="stylesheet" href="resources/css/angular-growl.css">
+  <link rel="stylesheet" href="resources/css/style.css">
 </head>
   <body ng-app="myApp">
     <header ng-if="isLogin" class="header" ng-include="'common/templates/header.html'"></header>
     <div id="main">        
         <div ui-view></div>
+        <div growl></div>
     </div>
     <footer></footer>
     
@@ -28,6 +30,9 @@
     <script type='text/javascript' src='resources/js/ng-infinite-scroll.min.js'></script>
     <script type='text/javascript' src='resources/js/md-data-table.min.js'></script>
     <script type='text/javascript' src='resources/js/angular-growl.js'></script>
+    <script type='text/javascript' src='resources/js/angular-translate.min.js'></script>
+    <script type='text/javascript' src='resources/js/angular-translate-loader-partial.min.js'></script>
+    <script type='text/javascript' src='resources/js/angular-sanitize.min.js'></script>
 
 	
     <script src="./app.js"></script>

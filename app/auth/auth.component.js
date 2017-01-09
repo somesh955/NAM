@@ -3,7 +3,11 @@
 
 	angular.module('myApp.authCtrl',[])
 
-	.controller('authController', function($scope, $rootScope,AuthServ, $state, UtilsServ, growl, LoggerServ){
+	.controller('authController', function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate){
+
+        $translatePartialLoader.addPart('login');
+        $translate.refresh();
+
         $scope.login = function(){
         	AuthServ.login({"verifyUserRequest":$scope.user},function(response){
         		if(response.statusMsg === UtilsServ.responseType.EXECUTED){
