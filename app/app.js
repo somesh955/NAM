@@ -6,6 +6,7 @@
  	 		"APP_URL":"http://182.18.139.136/NamWebService/1.0",
  	 		"WEB_URL":"http://localhost:3000/",
  	 		"VERSION":"0.0.1",
+ 	 		"CLIENT_DATEFORMAT" : "dd/MM/yyyy HH:mm:ss",
  	 		"DEV_MODE": true 
  	 })
  	 .config(['$httpProvider','$mdThemingProvider','growlProvider','$translateProvider', '$translatePartialLoaderProvider','AppConstant', function($httpProvider, $mdThemingProvider, growlProvider, $translateProvider, $translatePartialLoaderProvider, AppConstant){

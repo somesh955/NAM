@@ -105,7 +105,7 @@
 			"doBid" : function(data,clb){
 				return $http({
 				    method: 'POST',
-				    url: AppConstant.APP_URL+'/bidding/AuctionBidSubmission',
+				    url: AppConstant.APP_URL+'/bidding/auctionBidSubmission',
 				    data: $httpParamSerializer(data),
 				    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(response){

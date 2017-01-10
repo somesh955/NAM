@@ -1,7 +1,7 @@
 (function(){
 	
 	angular.module('myApp.utilService',[])
-	.factory('UtilsServ',function($resource){
+	.factory('UtilsServ',function($resource, $filter){
 		return {
 			"responseType": {
 				"EXECUTED" : 'S',
@@ -16,6 +16,9 @@
 					return (value.length > 0);
 				else
 					return false;
+			},
+			dateFormat : function(date, format){
+				return (date !== undefined && date !== null && date !== "") ? $filter('date')(new Date(date), format) : null;
 			}
 		};
 	});

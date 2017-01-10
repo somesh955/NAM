@@ -24,11 +24,11 @@
 		        <td md-cell>{{obj.commissionAgent | uppercase}}</td>
 		        <td md-cell>{{obj.wbWeight}}</td>
 		        <td md-cell>{{obj.wbWeight}}</td>
-		        <td md-cell>{{'0'}}</td>
-		        <td md-cell>{{'0'}}</td>
-		        <td md-cell>{{'0'}}</td>
+		        <td md-cell>{{obj.mspBidRate}}</td>
+		        <td md-cell>{{obj.maxOpenBidVal}}</td>
+		        <td md-cell>{{obj.lastBidVal}}</td>
 		        <td md-cell>{{'Time Remain'}}</td>
-		        <td md-cell><input type="text" ng-model="bidRate" /></td>
+		        <td md-cell><input type="number" ng-model="bidRate" min="{{obj.mspBidRate}}"/></td>
 		        <td md-cell><input type="button" value="Bid" ng-click="postBid(obj, bidRate)"/></td>
 		        <td md-cell><input type="button" value="Show" ng-click="getBid()"/></td>
 		        <td md-cell>{{obj.seller}}</td>
