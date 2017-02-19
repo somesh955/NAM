@@ -16,6 +16,11 @@
                 url: '/dashboard',
                 templateUrl: './dashboard/dashboard.component.html',
                 controller: 'dashboardController'
+            })
+			.state('bidding', {
+                url: '/newBidList',
+                templateUrl: './bidding/bidding.component.html',
+                controller: 'biddingController'
             })            
             .state('login', {
                 url: '/login',

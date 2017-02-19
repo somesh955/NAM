@@ -1,7 +1,7 @@
  (function(){
  	'use-strict',
 
- 	 angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.menuService','ngStorage', 'myApp.storageService'])
+ 	 angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.biddingCtrl','myApp.biddingService','myApp.menuService','ngStorage', 'myApp.storageService'])
  	 .constant('AppConstant',{
  	 		/*"APP_URL":"http://182.18.139.136/NamWebService/1.0",*/
 			"APP_URL":"http://192.168.1.235/NamWebService/1.0",
