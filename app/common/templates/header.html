@@ -1,20 +1,55 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">NAM</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/dashboard">Dashboard</a></li>
-        <li><a href="#/logout">Logout</a></li>
-        <li><a href="#/my-account">My Account</a></li>        
-      </ul>
+<header class="header-section ng-scope" style="position: fixed;width: 100%;z-index: 99;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-sm-6">
+        <div class="india-logo">
+          <img alt="India" src="resources/pix/india-logo.png">
+          <div class="india-name">GOVERNMENT<br> OF INDIA</div>
+        </div>
+        <div class="india-msg">
+          Small Farmers' Agribusiness Consortium<br>
+          Department of Agriculture, Cooperation &amp; Farmers' Welfare <br>
+          Ministry of Agriculture and Farmers' Welfare, Government of India
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-6">
+        <div class="header-right-section">
+          <div class="header-right-list">
+            <img src="resources/pix/help-no.png">
+          </div>
+          <div class="header-right-list login-btns">
+            <a class="border" href="#/login" title="Login"><img src="resources/pix/login-icon.png"></a>
+          </div>
+
+          <div class="header-right-list">
+            <div class="font-size-change">
+              <a class="font-A--btn" href="javascript:void()">A-</a>
+              <a class="font-A-btn" href="javascript:void()">A</a>
+              <a class="font-A-plus-btn" href="javascript:void()">A+</a>
+            </div>
+
+            <div class="color-theme">
+              <a class="red-theme-btn" onclick="changetheme('red-box');" href="javascript:void();"><span class="red-box">&nbsp;&nbsp;&nbsp;</span></a>
+              <a class="green-theme-btn" onclick="changetheme('green-box');" href="javascript:void();"><span class="green-box">&nbsp;&nbsp;&nbsp;</span></a>
+
+              <a class="blue-theme-btn" onclick="changetheme('blue-box');" href="javascript:void();"><span class="blue-box">&nbsp;&nbsp;&nbsp;</span></a>
+              <a class="orange-theme-btn" onclick="changetheme('orange-box');" href="javascript:void();"><span class="orange-box">&nbsp;&nbsp;&nbsp;</span></a>
+            </div>
+          </div>
+          <div class="header-right-list" style="position:relative;z-index: 10;">
+            <div class="form-group">
+              <label for="sel1" style="color:#fff"> Language:</label>
+              <select onchange="location = this.options[this.selectedIndex].value;" class="form-control" style="height: 28px !important;padding: 3px 0px  !important;" id="sel1" default="English">
+                <option value="../home/index.html">English</option>
+                <option value="../home_hindi/index.html">Hindi</option>
+                <option value="../home_gujarati/index.html">Gujarati</option>
+                <option value="../home_telugu/index.html">Telugu</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+</header>
+

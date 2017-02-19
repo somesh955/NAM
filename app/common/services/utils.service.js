@@ -9,7 +9,7 @@
 				"NOTFOUND" : 404,
 				"WARNING" : 302
 			},
-			"isUndefiedOrNull" : function(value){
+			"isUndefinedOrNull" : function(value){
 				if(typeof value === Object)
 					return (value !== undefined && value !== null && value !== "");
 				else if(value instanceof Array)

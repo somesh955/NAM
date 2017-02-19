@@ -1,25 +1,50 @@
 <!DOCYTPE html>
 <html lang="en" >
 <head>
-  <title>Welcome to NAM</title>
+  <title>NAM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Angular Material style sheet -->
-  <link rel="stylesheet" href="resources/css/angular-material.min.css">
-  <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/css/md-data-table.min.css">
-  <link rel="stylesheet" href="resources/css/angular-growl.css">
-  <link rel="stylesheet" href="resources/css/style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/custom-responsive.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/styles1.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/style_white.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/home-style.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/green-box.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/orange-box.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/blue-box.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/red-box.css"/>
+  <link rel="stylesheet" type="text/css" href="resources/css/angular-material.min.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/md-data-table.min.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/angular-growl.css">
+  <script>
+  function feedbackPopUp() {
+    var vars = window.location.search;
+    if (vars == "?id=22") {
+        $('#myModal1').modal('show');
+    }if (vars == "?id=12") {
+        $('#user').modal('show');
+    }
+  }
+  function closePopUp() {
+    var vars = window.location.replace("index.html");
+  }
+  </script>
 </head>
-  <body ng-app="myApp">
-    <header ng-if="isLogin" class="header" ng-include="'common/templates/header.html'"></header>
+<body id="enamHome" class="red-theme font-A" onLoad="feedbackPopUp();"  ng-app="myApp">
+    <div class="header" ng-include="'common/templates/header.html'"></div>  
+    <div class="header" ng-include="'common/templates/nav.html'"></div>
     <div id="main">        
         <div ui-view></div>
         <div growl></div>
     </div>
-    <footer></footer>
-    
+    <footer class="" ng-include="'common/templates/footer.html'"> </footer>
+
+    <script type="text/javascript" src="resources/js/jquery.min.js"/></script>
+    <script type="text/javascript" src="resources/js/theme.js"/></script>
     <script type='text/javascript' src="resources/js/angular.min.js"></script>
-    <script type='text/javascript' src="resources/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="resources/js/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="resources/js/custom_angularjs.js"></script>
     <script type='text/javascript' src="resources/js/angular-ui-router.min.js"></script>
     <script type='text/javascript' src="resources/js/angular-resource.min.js"></script>
     <script type='text/javascript' src='resources/js/angular-animate.min.js'></script>
@@ -33,15 +58,21 @@
     <script type='text/javascript' src='resources/js/angular-translate.min.js'></script>
     <script type='text/javascript' src='resources/js/angular-translate-loader-partial.min.js'></script>
     <script type='text/javascript' src='resources/js/angular-sanitize.min.js'></script>
+    <script type='text/javascript' src='resources/js/ngStorage.js'></script>
 
 	
     <script src="./app.js"></script>
     <script src="./routes.js"></script>    
     <script src="common/services/utils.service.js"></script>
     <script src="common/services/logger.service.js"></script>
+    <script src="common/services/menu.service.js"></script>
+    <script src="common/services/storage.service.js"></script>
     <script src="auth/auth.component.js"></script>
     <script src="auth/auth.service.js"></script>
     <script src="home/home.component.js"></script>
     <script src="home/home.service.js"></script>
+    <script src="dashboard/dashboard.component.js"></script>
+    <script src="dashboard/dashboard.service.js"></script>
+
   </body>
 </html>

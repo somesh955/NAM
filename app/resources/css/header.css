@@ -1,0 +1,124 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('http://fonts.googleapis.com/css?family=Droid+Sans|Oxygen:400,700');
+body{padding:0;margin:0;font-size:13px;line-height:21px;font-weight:normal;background-color:#fff;font-family : 'Open Sans', Oxygen, Arial;}
+a{cursor:pointer;text-decoration:none;}
+a:hover{text-decoration:none;}
+ul{margin:0;padding:0}
+ul li{list-style:none;}
+img {border:0;}
+table{width:100%;}
+
+
+/*green theme*/
+.green-theme .mydiv{background-color:#eee;}
+.green-theme .header-section{background-color:#6D9520;}
+.green-theme .navigation li a.active{background-color:#6D9520;color:#fff;}
+.green-theme .navigation li a:hover{background-color:#6D9520;color:#fff;}
+.green-theme .quick-link-list{border-top:5px solid #6D9520;}
+.green-theme .thumbnails .span3 .caption h4 {background-color: #6D9520;}
+.green-theme .sidebar-header-title{border-bottom:5px solid #6D9520;}
+.green-theme .language-bg-color{background-color: #5d7f1b;}
+
+/*red theme*/
+.red-theme .mydiv{background-color:#000;}
+.red-theme .header-section{background-color:#b45834;}
+.red-theme .navigation li a.active{background-color:#b45834;color:#fff;}
+.red-theme .navigation li a:hover{background-color:#b45834;color:#fff;}
+.red-theme .quick-link-list{border-top:5px solid #b45834;}
+.red-theme .thumbnails .span3 .caption h4 {background-color: #b45834;}
+.red-theme .sidebar-header-title{border-bottom:5px solid #b45834;}
+.red-theme .language-bg-color{background-color: #954729;}
+
+/*blue theme*/
+.blue-theme .mydiv{background-color:#000;}
+.blue-theme .header-section{background-color:#3F96DA;}
+.blue-theme .navigation li a.active{background-color:#3F96DA;color:#fff;}
+.blue-theme .navigation li a:hover{background-color:#3F96DA;color:#fff;}
+.blue-theme .quick-link-list{border-top:5px solid #3F96DA;}
+.blue-theme .thumbnails .span3 .caption h4 {background-color: #3F96DA;}
+.blue-theme .sidebar-header-title{border-bottom:5px solid #3F96DA;}
+.blue-theme .language-bg-color{background-color: #3683be;}
+
+/*orange theme*/
+.orange-theme .mydiv{background-color:#000;}
+.orange-theme .header-section{background-color:#E66100;}
+.orange-theme .navigation li a.active{background-color:#E66100;color:#fff;}
+.orange-theme .navigation li a:hover{background-color:#E66100;color:#fff;}
+.orange-theme .quick-link-list{border-top:5px solid #E66100;}
+.orange-theme .thumbnails .span3 .caption h4 {background-color: #E66100;}
+.orange-theme .sidebar-header-title{border-bottom:5px solid #E66100;}
+.orange-theme .language-bg-color{background-color: #d65c03;}
+
+
+/* Normal ====================================*/
+.font-A .india-logo .india-name{font-size:13px;}
+.font-A .india-msg{font-size:12px;}
+.font-A .header-title{font-size: 19px;}
+.font-A .quick-link-header{font-size: 19px;}
+.font-A .commodity-header{font-size: 19px;}
+.font-A .sidebar-header-title{font-size: 19px;}
+.font-A .focus-news  .focus-news-feilds p{font-size: 13px;}
+.font-A .quick-link-list li a{font-size: 13px;}
+/*min ====================================*/
+.font-A- .india-logo .india-name{font-size:12px;}
+.font-A- .india-msg{font-size:12px;}
+.font-A- .header-title{font-size: 17px;}
+.font-A- .quick-link-header{font-size: 17px;}
+.font-A- .commodity-header{font-size: 17px;}
+.font-A- .sidebar-header-title{font-size: 17px;}
+.font-A- .focus-news .focus-news-feilds p{font-size: 11px;}
+.font-A- .quick-link-list li a{font-size: 10px;}
+/*plus ====================================*/
+.font-A-plus .india-logo .india-name{font-size:12px;}
+.font-A-plus .india-msg{font-size:12px;}
+.font-A-plus .header-title{font-size: 21px;}
+.font-A-plus .quick-link-header{font-size: 21px;}
+.font-A-plus .commodity-header{font-size: 21px;}
+.font-A-plus .sidebar-header-title{font-size: 21px;}
+.font-A-plus .focus-news  .focus-news-feilds p{font-size: 14px;}
+.font-A-plus .quick-link-list li a{font-size: 14px;}
+/*====================================*/
+
+/*comman css*/
+.f-left{float:left;}
+.f-right{float:right;}
+.align-left{text-align:left;}
+.align-right{text-align:right;}
+.align-center{text-align:center;}
+
+/*header section*/
+
+.header-section{min-height:72px;}
+.india-logo {float:left;}
+.india-logo img{padding:11px 11px 11px 25px;float:left;}
+.india-logo .india-name{padding:15px 16px 0 0;font-family:Fujiyama2;float:left;color:#fff;}
+.india-msg{border-left: 1px solid #f1f1f1;
+    color: #fff;
+    float: left;
+    font-family: calibri;
+    font-weight: bold;
+    line-height: 14px;
+    margin-top: 15px;
+    padding-left: 16px;
+    margin-bottom: 15px;
+    text-align: left;}
+.header-right-section{float:right;}
+.header-right-list:first-child{border-left:0px solid #c8c8c8;}
+.header-right-list{padding:10px 20px;margin:5px 0;border-left:1px solid #c8c8c8;float:left;min-height:62px;}
+.login-btns a.border img{border-right: 2px solid #fff;
+    margin-right: 2px;
+    padding-right: 8px;}
+.font-size-change a{border: 1px solid #fff;
+    color: #fff;
+    font-weight: bold;
+    padding: 1px 4px;
+	margin-right:3px;margin-top:4px;float:left;min-width:25px;}
+.top-social-icon a{float:left;margin-left:10px;padding-top:0px;}
+.color-theme{padding-top:5px;float:left;}
+.red-box{border:1px solid #fff;background-color:#6D9520;height:15px;width:15px;float:left;margin-left:5px;}
+.green-box{border:1px solid #fff;background-color:#b45834;height:15px;width:15px;float:left;margin-left:5px;}
+.orange-box{border:1px solid #fff;background-color:#3F96DA;height:15px;width:15px;float:left;margin-left:5px;}
+.blue-box{border:1px solid #fff;background-color:#E66100;height:15px;width:15px;float:left;margin-left:5px;}
+.language-bg-color{color:#fff;
+    border: 1px solid #fff;
+    font-size: 12px;}

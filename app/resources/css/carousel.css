@@ -1,0 +1,41 @@
+/*Carousel Control*/
+.thumbnail{border:0px;padding:0;}
+.thumbnails .span3{  float: left;
+    margin-right: 16px;
+    width: 112px}
+.thumbnails .span3 .caption h4{background-color:#b45834;color:#fff;padding:8px 2px;text-align:center; font-family: calibri;
+    font-size: 13px;
+    font-weight: bold;}
+.carousel-control.left{background-color:#999;}
+.carousel-control.right{background-color:#999;}
+
+.control-box {
+    text-align: right;
+    width: 100%;
+    }
+.carousel-control{
+        background: #fff;
+        border: 0px;
+        border-radius: 0px;
+        display: inline-block;
+        font-size: 34px;
+        font-weight: 200;
+        line-height: 18px;
+        opacity: 0.5;
+        padding: 4px 10px 0px;
+        position: static;
+        height: 30px;
+        width: 15px;
+        }
+
+/* Mobile Only */
+@media (max-width: 767px) {
+    .page-header, .control-box {
+    text-align: center;
+    } 
+}
+@media (max-width: 479px) {
+    .caption {
+    word-break: break-all;
+    }
+}

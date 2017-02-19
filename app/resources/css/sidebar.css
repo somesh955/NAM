@@ -1,0 +1,9 @@
+/*sidebar css*/
+.video-section,.photo-section,.focus-section{float:left;padding-bottom:20px;width:100%;}
+.sidebar-header-title{color:#545454;font-family: calibri;padding-bottom:10px;border-bottom:5px solid #b45834;margin-bottom:15px;}
+.view-more{font-family: calibri;font-size: 14px;padding:10px 0;}
+.view-more a{color:#b45834;}
+.focus-news{background-color:#f9f9f9;padding:12px;}
+.focus-news-feilds{border-bottom:1px solid #eee;float:left;width:100%;padding-bottom:15px;margin-bottom:15px;}
+.focus-news-feilds p{color:#181818;margin-bottom:10px;}
+.focus-news-feilds a{color:#b45834;margin-bottom:10px;}

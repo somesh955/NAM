@@ -1,7 +1,8 @@
 {
 	"Welcome_text" : "Welcome to NAM",
-	"login_title" : "Login",
-	"email" : "Email",
+	"login_title" : "Trader Login",
+	"email" : "User Name",
 	"password" : "Password",
+	"remember_me" : "Remember Me",
 	"login_btn" : "Login"
 }

@@ -1,0 +1,28 @@
+  <nav class="menu-section ng-scope">
+  	<div class="container" style="position: fixed;width: 100%;margin-top: 75px;height: 50px;z-index: 99;">
+    <div class="row">
+     <nav class="navbar navbar-default navbar-static-top gcolor" role="navigation" style="padding:0; margin:0;height: 50px;">
+      <div class="navbar navbar-default navbar-static-top">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+          </div>
+          <div class="navbar-collapse collapse ">
+            <ul class="nav navbar-nav">
+              <li ng-repeat="menu in menus" class="dropdown" ng-if="menu.isEnabled && menu.isAuthenticate === isLogin">
+                  <a href="{{menu.href}}" data-toggle="dropdown}" class="dropdown-toggle" >{{menu.label}} <b ng-if="menu.isChild" class="caret"></b></a>
+                  <ul class="dropdown-menu" ng-if="menu.isChild">
+                    <li ng-repeat="childmenu in childMenus " ng-if="childmenu.parent_id == menu.id && childmenu.isEnabled && menu.isAuthenticate === isLogin"><a href="{{childmenu.href}}">{{childmenu.label}}</a></li>
+                  </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+     </nav>
+  </div>
+ </div>
+</nav>

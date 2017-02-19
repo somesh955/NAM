@@ -9,12 +9,12 @@
         $translate.refresh();
 
         $scope.login = function(){
-        	AuthServ.login({"verifyUserRequest":$scope.user},function(response){
-        		if(response.statusMsg === UtilsServ.responseType.EXECUTED){
+        	AuthServ.login({"loginRequest":$scope.user},function(response){
+        		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
         			growl.success("User Login Successfully!!!");
                     $rootScope.isLogin = true;
-					AuthServ.setUserDetails(response.responseHeader[0]);
+					AuthServ.setUserDetails(response.userDetails);
     				$state.go('dashboard');
         		}else{
                     LoggerServ.log(response);

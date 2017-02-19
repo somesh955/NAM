@@ -1,48 +1,434 @@
-<div layout="coloumn" layout-xs="column" flex>
-  <div flex ng-cloak>
-	  <md-toolbar class="md-table-toolbar md-default">
-		  <div class="md-toolbar-tools">
-		    <span>Bidding</span>
-		  </div>
-		</md-toolbar>
+	<section class="content-section">
+		<div class="container pdtop">
+			<div class="row">
+				<div class="col-lg-9 col-sm-9">
+					<article class="mid-top-space natinal-agricul-market">
+						<div class="commodity-header">National Agriculture Market-Dashboard</div>
+						<div class="commodity-list">
+							<div class="row" style="margin-bottom:4px;">
+								<div class="col-md-9 col-sm-8 col-xs-12" >
+									<h4 class="panel-title" style="color:#000;">
+										<b>Commodity Trading Details for Last Day </b>
+									</h4>
+								</div>
+								<div class="col-md-3 col-sm-4 col-xs-12" >
+									<div style="float:right;">
+										<a href="dashboard4.html"> <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="left" title="Maximize" >
+											<img src="resources/images/maximize.png" height="20px" width="20px"/> Maximize
+										</button></a>
+									</div>
+								</div>
+							</div>
+							<div >
+								<table class="table table-responsive table-bordered">
+									<thead>
+										<tr>
+											<th style="width:44%;padding-bottom: 15px;">Commodity</th>
+											<th style="width:14%;">Commodity Arrivals(Quintal)</th>
+											<th style="width:14%;">Commodity Traded(in Quintal)</th>
+											<th style="width:14%;">Commodity Traded(in Lacs)</th>
+											<th style="width:14%;">Last Traded Price(per Quintal)</th>
+										</tr>
+									</thead >
+									<tbody>
+										<tr ng-repeat="x in names">
+											<td ng-if="$odd" style="background-color:#eeeeee";>{{ x.commName }}</td>
+											<td ng-if="$even" style="background-color:#f9f9f9">{{ x.commName }}</td>
+											<td ng-if="$odd" style="background-color:#eeeeee;  text-align: right;">{{ x.commArrival }}</td>
+											<td ng-if="$even" style="background-color:#f9f9f9;text-align: right;">{{ x.commArrival }}</td>
+											<td ng-if="$odd" style="background-color:#eeeeee;text-align: right;"> {{ x.commTraded }}</td>
+											<td ng-if="$even" style="background-color:#f9f9f9;text-align: right;"> {{ x.commTraded }}</td>
+											<td ng-if="$odd" style="background-color:#eeeeee;text-align: right;"> {{ x.commSold }}</td>
+											<td ng-if="$even" style="background-color:#f9f9f9;text-align: right;"> {{ x.commSold }}</td>
+											<td ng-if="$odd" style="background-color:#eeeeee;text-align: right;">{{ x.lastPrice }}</td>
+											<td ng-if="$even" style="background-color:#f9f9f9;text-align: right;">{{ x.lastPrice }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</article>
+					<article class="mid-top-space commodity-graph-section">
+						<div class="col-lg-3 col-sm-3">
+							<div class="header-title">Commodity Arrival Graph</div>
+							<a href="dashboard1.html"><img src="resources/pix/commodity-img1.png" /></a>
+						</div>
+						<div class="col-lg-3 col-sm-3">
+							<div class="header-title">Commodity Price Graph</div>
+							<a href="dashboard2.html"><img src="resources/pix/commodity-img2.png" /></a>
+						</div>
+						<div class="col-lg-3 col-sm-3">
+							<div class="header-title" style="padding-top:18px;">Live Mandi</div>
+							<a href="dashboard3.html"><img src="resources/pix/commodity-img3.png" /></a>
+						</div>
+						<div class="col-lg-3 col-sm-3">
+							<div class="header-title" style="padding-top:18px;">Registered Users</div>
+							<a href="dashboard5.html"><img src="resources/images/registered-users-img.png" /></a>
+						</div>
+					</article>
+					<article class="mid-top-space mid-bottom-space" >
+						<div class="col-lg-4 col-sm-4">
+							<div class="quick-link-header">QUICK LINKS</div>
+							<div class="quick-link-list">
+								<ul>
+									<li><a href="about_nam.html" title="About NAM"><span class="quick-img1"></span>About NAM</a></li>
+									<li><a href="key_stakeholder.html" title="Key Stock Holders"><span class="quick-img2"></span>Key Stakeholders</a></li>
+									<li><a href="implemented_progress.html" title="Implementation Progress"><span class="quick-img3"></span>Implementation Progress</a></li>
+									<li><a href="guide.html" title="Guidelines"><span class="quick-img4"></span>Guidelines</a></li>
+									<li><a href="commodity.html" title="Commodity"><span class="quick-img9"></span>Approved Commodity </a></li>
+									<li><a href="cqp.html" title="Commodity Parameter"><span class="quick-img5"></span>Commodity Parameter</a></li>
+									<li><a href="state_unified_license.html" title="state_unified_license"><span class="quick-img10"></span>State Unified License</a></li>
+									<li><a href="feedback.html" title="Feedback"><span class="quick-img6"></span>Feedback</a></li>
+									<li><a href="faq.html" title="FAQ"><span class="quick-img7"></span>FAQs</a></li>
+									<li><a href="download.html" title="Downloads"><span class="quick-img8"></span>Downloads</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-8 col-sm-8">
+							<div class="commodity-header">COMMODITY</div>
+							<div class="commodity-list">
+								<div id="myModal1" class="modal fade" role="dialog">
+									<div class="modal-dialog">
 
-		<!-- exact table from live demo -->
-		<md-table-container>
-		  <table md-table md-progress="promise">
-		    <thead md-head md-order="query.order">
-	            <tr md-row>
-	               <th md-column ng-repeat="column in autocolumn" md-order-by="{{column.name}}">
-	                  <span>{{column.display}}</span>
-	               </th>
-	            </tr>
-	         </thead>
-		    <tbody md-body>
-		      <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="obj in bidList | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-		        <td md-cell>{{obj.oprName}}</td>
-		        <td md-cell>{{obj.productName}}</td>
-		        <td md-cell>{{obj.lotCode}}</td>
-		        <td md-cell>{{obj.commissionAgent | uppercase}}</td>
-		        <td md-cell>{{obj.wbWeight}}</td>
-		        <td md-cell>{{obj.wbWeight}}</td>
-		        <td md-cell>{{obj.mspBidRate}}</td>
-		        <td md-cell>{{obj.maxOpenBidVal}}</td>
-		        <td md-cell>{{obj.lastBidVal}}</td>
-		        <td md-cell>{{'Time Remain'}}</td>
-		        <td md-cell><input type="number" ng-model="bidRate" min="{{obj.mspBidRate}}"/></td>
-		        <td md-cell><input type="button" value="Bid" ng-click="postBid(obj, bidRate)"/></td>
-		        <td md-cell><input type="button" value="Show" ng-click="getBid()"/></td>
-		        <td md-cell>{{obj.seller}}</td>
-		        <td md-cell>{{''}}</td>
-		        <td md-cell><input type="button" value="Show"/></td>
-		        <td md-cell>{{obj.startDate}}</td>
-		        <td md-cell>{{obj.endDate}}</td>
-		        <td md-cell>{{(obj.submitMultiBid == 'Y') ? 'Yes': 'No'}}</td>
-		        <td md-cell>{{obj.extendedEndTime}}</td>
-		      </tr>
-		    </tbody>
-		  </table>
-		</md-table-container>
+										<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header" style="border:none;">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title commodity-header">Alerts</h4>
+												<div class="commodity-list" style="padding:0px;">&nbsp;</div>
+											</div>
+											<div class="modal-body">
+												<div class="boxes">
 
-		<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{bidList.length}}" md-page-select="options.pageSelect"></md-table-pagination>
+
+													<div class="box_cont">
+
+
+														<div style="font-weight:bold; width:100%; margin:10px; text-align:center; font-size:18px;">Your valuable suggestion has been submitted and will be attended shortly by our team.</div>
+
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer" style="border:none;">
+												<button type="button" class="btn btn-default" onClick="closePopUp();" data-dismiss="modal" >Close</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<div class="carousel slide" id="myCarousel">
+									<div class="carousel-inner">
+										<div class="item active">
+											<ul class="thumbnails">
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img1.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Chana</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img2.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Wheat</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img3.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Mustard</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img4.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Sunflower</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img5.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Paddy</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img6.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Maize</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img7.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Shelling Peas</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img8.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Chura Turmeric</h4>
+													</div>
+												</li>
+											</ul>
+										</div><!-- /Slide1 -->
+										<div class="item">
+											<ul class="thumbnails">
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img9-Bulb-Turmeric.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Bulb Turmeric</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img10-Fingure-Turmeric.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Finger Turmeric</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img11-Onion.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Onion</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img12-Chillies.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Chillies</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img13-Apple.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Apple</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img14-Castor-Seed.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Castor Seed</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img15-Barley.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Barley</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img16-Jowar.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Jowar</h4>
+													</div>
+												</li>
+											</ul>
+										</div><!-- /Slide2 -->
+										<div class="item">
+											<ul class="thumbnails">
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img17-Mahua.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Mahua</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img18-Taramind.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Tamarind</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img19-Tur.jpg" alt="">
+													</div>
+													<div class="caption">
+														<h4>Tur</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img4.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Sunflower</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img5.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Paddy</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img6.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Maize</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img7.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Shelling Peas</h4>
+													</div>
+												</li>
+												<li class="span3">
+													<div class="thumbnail">
+														<img src="resources/pix/bottom-slider/img8.png" alt="">
+													</div>
+													<div class="caption">
+														<h4>Chura Turmeric</h4>
+													</div>
+												</li>
+											</ul>
+										</div><!-- /Slide3 -->
+									</div>
+
+									<div class="control-box" style="display:none;">
+										<a data-slide="prev" href="#myCarousel" class="carousel-control left">â€¹</a>
+										<a data-slide="next" href="#myCarousel" class="carousel-control right">â€º</a>
+									</div><!-- /.control-box -->
+								</div>
+
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="col-lg-3 col-sm-3">
+					<div class="mid-top-space">
+						<div class="video-section">
+							<div class="sidebar-header-title">NAM VIDEOS</div>
+							<div>
+								<iframe class="classvideo" src="https://www.youtube.com/embed/fMe23afGdKc" frameborder="0" allowfullscreen></iframe>
+							</div>
+							<div class="view-more">
+								<a target="_blank" href="#">view all videos</a>
+							</div>
+						</div>
+						<div class="photo-section">
+							<div class="sidebar-header-title">EVENT GLIMPSES</div>
+							<script type="text/javascript">
+						    $next = 1;          // fixed, please do not modfy;
+						    $current = 0;       // fixed, please do not modfy;
+						    $interval = 4000;   // You can set single picture show time;
+						    $fadeTime = 800;    // You can set fadeing-transition time;
+						    $imgNum = 5;        // How many pictures do you have
+
+						    $(document).ready(function(){
+						        //NOTE : Div Wrapper should with css: relative;
+						        //NOTE : img should with css: absolute;
+						        //NOTE : img Width & Height can change by you;
+						        $('.fadeImg').css('position','relative');
+						        $('.fadeImg img').css({'position':'absolute','width':'100%'});
+
+						        nextFadeIn();
+						    });
+
+						    function nextFadeIn(){
+						        //make image fade in and fade out at one time, without splash vsual;
+						        $('.fadeImg img').eq($current).delay($interval).fadeOut($fadeTime)
+						        .end().eq($next).delay($interval).hide().fadeIn($fadeTime, nextFadeIn);
+
+						        // if You have 5 images, then (eq) range is 0~4
+						        // so we should reset to 0 when value > 4;
+						        if($next < $imgNum-1){ $next++; } else { $next = 0;}
+						        if($current < $imgNum-1){ $current++; } else { $current =0; }
+						    };
+						</script>
+
+						<div class="fadeImg" style="min-height:160px;" >
+							<img src="resources/pix/glimpses/1.jpg">
+
+							<img style="display:none;" src="resources/pix/glimpses/2.jpg">
+							<img style="display:none;" src="resources/pix/glimpses/3.jpg">
+							<img style="display:none;" src="resources/pix/glimpses/4.jpg">
+							<img style="display:none;" src="resources/pix/glimpses/5.jpg">
+						</div>
+						<div style="clear:both;padding:1px;"></div>
+					</div>
+
+				<div class="focus-section">
+					<div class="sidebar-header-title" style="margin-bottom:0;">IN FOCUS</div>
+					<div class="focus-news">
+						<marquee height="424" onMouseOut="start();" onMouseOver="stop();" direction="up" scrollamount="2">
+							<div class="focus-news-feilds">
+								<p><img src="resources/images/new.gif" alt="" >Website and Application is now available in Hindi, Gujarati and Telugu languages. States / Users are requested to start using the same and provide feedback, if any, for further improvement.</p>
+							</div>
+							<div class="focus-news-feilds">
+								<p><img src="resources/images/new.gif" alt="" >Register online for PM Awards for implementation of e-NAM scheme on <a href="http://darpg.nic.in/" target="_blank"><u>darpg.nic.in</u></a>.</p>
+							</div>
+							<div class="focus-news-feilds">
+								<p><img src="resources/images/new.gif" alt="" ><a href="../infrastructure/MoM-DARPG.pdf" download><u>Download Evaluation criteria of PM Awards</u></a>. For any clarifications / help / registration contact SFAC at 011-41060076.</p>
+							</div>
+
+							<a href="mandis.html" ><div class="focus-news-feilds">
+								<p>250 Mandi's across 10 States are live on e-NAM as on 30th Nov 2016</p>
+							</div></a>
+							<div class="focus-news-feilds">
+								<p>Payment Gateway is now integrated on National Agriculture Market Platform.</p>
+							</div>
+							<div class="focus-news-feilds">
+								<p>PM Launches agro e-trading platform e-NAM.</p>
+								<a href="http://timesofindia.indiatimes.com/india/PM-launches-agro-e-trading-platform-eNAM/articleshow/51830333.cms" target="_blank">read more</a>
+							</div>
+							<div class="focus-news-feilds">
+								<p>NAM could be a big game changer for doubling the farmer's income by 2022. Read More Proff Chand-NITI Ayog</p>
+								<a href="http://www.business-standard.com/article/economy-policy/we-want-to-promote-shift-of-agri-labourers-to-other-sectors-ramesh-chand-116060800209_1.html" target="_blank">read more</a>
+							</div>
+					            <div class="focus-news-feilds">
+					            	<p>Government bullish on farm sector ,NAM rolled out to provide better Returns to Famer</p>
+					            	<a href="http://economictimes.indiatimes.com/articleshow/52522537.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst" target="_blank">read more</a>
+					            </div>
+					            <div class="focus-news-feilds">
+					            	<p>How e-NAM can promote the warehousing sector</p>
+					            	<a href="http://www.thehindubusinessline.com/economy/agri-business/how-enam-can-promote-the-warehousing-sector/article8596643.ece" target="_blank">read more</a>
+					            </div>
+					        </marquee>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
+</section>
