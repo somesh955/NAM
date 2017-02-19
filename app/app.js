@@ -8,7 +8,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
  	 		"WEB_URL":"http://localhost:3000/",
  	 		"VERSION":"1.0",
  	 		"CLIENT_DATEFORMAT" : "dd/MM/yyyy HH:mm:ss",
- 	 		"SERVER_DATEFORMAT" : "yyyy-MM-dd'T'hh:mm'Z'Z",
+ 	 		"SERVER_DATEFORMAT" : "yyyy-mm-dd'T'hh:MM:ss'Z'o",
  	 		"DEV_MODE": true 
  	 })
  	 .config(['$httpProvider','$mdThemingProvider','growlProvider','$translateProvider', '$translatePartialLoaderProvider','AppConstant', function($httpProvider, $mdThemingProvider, growlProvider, $translateProvider, $translatePartialLoaderProvider, AppConstant){

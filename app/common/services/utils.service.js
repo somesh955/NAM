@@ -33,15 +33,17 @@
 			getDateFormat : getDateFormat,
 			setDateFormat : function(date){
 				if(null !== date && undefined !== date){
-					return dateFormat(new Date(date), AppConstant.SERVER_DATEFORMAT);
+					var newDate = dateFormat(new Date(date), AppConstant.SERVER_DATEFORMAT);
+					return (newDate.substring(0,newDate.length-2) +":"+ newDate.substring(newDate.length-2,newDate.length));
 				}else{
-					return dateFormat(new Date(), AppConstant.SERVER_DATEFORMAT);	
+					var newDate = dateFormat(new Date(), AppConstant.SERVER_DATEFORMAT);
+					return (newDate.substring(0,newDate.length-2) +":"+ newDate.substring(newDate.length-2,newDate.length));
 				}				
 			},
 			isSessionExpire : function(expireTime){
 				var result = false;
 				if(expireTime !== null && expireTime !== undefined){
-					result = ((new Date(getDateFormat(expireTime))).getUTCMilliseconds() > (new Date().getUTCMilliseconds()))	
+					result = (new Date(getDateFormat(expireTime)) > new Date())	
 				}				
 				return result;
 			}
