@@ -1,13 +1,14 @@
  (function(){
  	'use-strict',
 
- 	 angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.menuService','ngStorage', 'myApp.storageService'])
+ 	 angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.menuService','ngStorage', 'myApp.storageService','ng.deviceDetector', 'myApp.requestService'])
  	 .constant('AppConstant',{
  	 		/*"APP_URL":"http://182.18.139.136/NamWebService/1.0",*/
 			"APP_URL":"http://192.168.1.235/NamWebService/1.0",
  	 		"WEB_URL":"http://localhost:3000/",
- 	 		"VERSION":"0.0.1",
+ 	 		"VERSION":"1.0",
  	 		"CLIENT_DATEFORMAT" : "dd/MM/yyyy HH:mm:ss",
+ 	 		"SERVER_DATEFORMAT" : "yyyy-MM-dd'T'hh:mm'Z'Z",
  	 		"DEV_MODE": true 
  	 })
  	 .config(['$httpProvider','$mdThemingProvider','growlProvider','$translateProvider', '$translatePartialLoaderProvider','AppConstant', function($httpProvider, $mdThemingProvider, growlProvider, $translateProvider, $translatePartialLoaderProvider, AppConstant){
@@ -28,26 +29,27 @@
    		    $translateProvider.useSanitizeValueStrategy('sanitize');
 			$translateProvider.preferredLanguage('en-IN');
  	 }])
- 	 .factory('httpInjector', [function() {  
+ 	 .factory('httpInjector', ['CommonRequestServ','AppConstant','UtilsServ', function(CommonRequestServ, AppConstant, UtilsServ) {  
+ 	 	var deviceInfo = CommonRequestServ.getdeviceInfomation();
         var httpInjector = {
             request: function(config) {
             	if(config.data !==null && config.data !== undefined){
 	            	var commonHeader = {
 						    "version": "1.0",
-						    "ts": "2017-01-13T19:49:22Z+05:30",
-						    "txn": "123",
+						    "ts": UtilsServ.setDateFormat().toString(),
+						    "txn": new Date().getUTCMilliseconds(),
 						    "keySign": "",
 						    "keyIndex": "",
 						    "sessionRefId": "",
 						    "lang": "en",
 						    "deviceInfo": {
-						      "os": "Windows",
-						      "osVersion": "10",
-						      "deviceType": "B",
+						      "os": deviceInfo.os,
+						      "osVersion": deviceInfo.os_version,
+						      "deviceType": (deviceInfo.device === "unknown") ? "B" : deviceInfo.device,
 						      "deviceId": "",
 						      "publicIp": "192.168.0.99",
-						      "browser": "Mozilla/49.0.2",
-						      "appVersion" : ""
+						      "browser": deviceInfo.raw.userAgent,
+						      "appVersion" : AppConstant.VERSION
 						    }
 						  }	
 					config.data.requestHeader = commonHeader;	
@@ -57,17 +59,20 @@
         };
         return httpInjector;
     }])
- 	 .run(['AuthServ','UtilsServ','$state','$rootScope','MenuService' ,function(AuthServ, UtilsServ, $state, $rootScope, MenuService){
+ 	 .run(['AuthServ','UtilsServ','$state','$rootScope','MenuService','$timeout' ,function(AuthServ, UtilsServ, $state, $rootScope, MenuService, $timeout){
  	 	$rootScope.isLogin = false;
  	 	$rootScope.menus = MenuService.getParentMenu();
 	    $rootScope.childMenus = MenuService.getChildMenu();
 	    var userInfo = AuthServ.userDetails();
- 	 	if(UtilsServ.isUndefinedOrNull(userInfo) && userInfo.expire_time > 0){
+
+ 	 	if(!UtilsServ.isUndefinedOrNull(userInfo) && UtilsServ.isSessionExpire(userInfo.sessionExpiryTime)){
  	 			$rootScope.isLogin = true;
  	 			$state.go('dashboard');
  	 			return true;
  	 	}else{
- 	 		$state.go('login');	
+ 	 		$timeout(function() {
+		        $state.go('login');
+		    });
  	 		return true;
  	 	} 	 	
  	 }]);

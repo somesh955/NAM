@@ -4,11 +4,12 @@
 	.factory('StorageService',['$localStorage',function($localStorage){
 
 		var setUserDetails = function(key, value){
-			$localStorage.$default({key : value});
+			$localStorage[key] = JSON.stringify(value);
 		};
 
 		var getUserDetails = function(key){
-			return $localStorage.$default[key];
+			var userInfo = $localStorage[key];
+			return (null !== userInfo && undefined !== userInfo) ? JSON.parse(userInfo) : null;
 		};
 
 		return {
