@@ -12,8 +12,7 @@
 	         <div class="row form-group">
 	           <div class="col-md-4 col-sm-4 col-xs-12 "><label>APMC </label></div>
 	            <div class="col-md-7 col-sm-8 col-xs-12 ">
-					<select class="form-control" style="height: 35px;" >
-					   <option>HYDRABAD</option>
+					<select class="form-control" style="height: 35px;" ng-model="state" ng-change="getApmcList(state)" ng-options="state as state.stateName for state in stateList">
 					</select>
 	            </div>
 	          </div>
@@ -36,7 +35,7 @@
 	          <div class="col-md-4 col-sm-4 col-xs-12 "><label>Commodity </label></div>
 	            <div class="col-md-7 col-sm-8 col-xs-12 ">
 	            <select class="form-control" style="height: 35px;">
-				   <option>All</option>
+				   <option ng-model="commodity" ng-repeat="ammc in ammcList" value="ammc.ammcId" ng-change="getCommodityList(ammc.ammcId)">{{ammc.ammcName}}</option>
 	            </select>
 	            </div>
 	          </div>

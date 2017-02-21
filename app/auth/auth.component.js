@@ -9,7 +9,7 @@
         $translate.refresh();
 
         $scope.login = function(){
-        	AuthServ.login({"loginRequest":$scope.user},function(response){
+        	AuthServ.login().save({"loginRequest":$scope.user},function(response){
         		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
         			growl.success("User Login Successfully!!!");
@@ -18,7 +18,7 @@
     				$state.go('dashboard');
         		}else{
                     LoggerServ.log(response);
-        			growl.error(response.errMsg);
+        			growl.error(response.responseHeader.errMsg);
         		}        		
         	});
         };

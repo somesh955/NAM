@@ -1,0 +1,65 @@
+{
+  "responseHeader": {
+    "ts": "2017-02-21T04:20:09Z+05:30",
+    "txn": "123",
+    "respCode": "2017020492370002633",
+    "statusMsg": "S"
+  },
+  "userDetails": {
+    "orgId": "1",
+    "oprId": "49",
+    "userId": "2016040490120000160",
+    "userName": "HYDERABAD TRADER A",
+    "loginType": "T",
+    "userType": "G",
+    "secureToken": "C5B6AEAD1A6C4D2B9CAF90ECCC485ADB",
+    "sessionRefId": "201604049012000016002523674449245",
+    "sessionExpiryTime": "2017-02-21T04:30:09Z+05:30",
+    "stateResponse": [
+      {
+        "stateId": "20",
+        "stateName": "MADHYA PRADESH"
+      },
+      {
+        "stateId": "22",
+        "stateName": "GUJARAT"
+      },
+      {
+        "stateId": "26",
+        "stateName": "RAJASTHAN"
+      },
+      {
+        "stateId": "28",
+        "stateName": "TELANGANA"
+      },
+      {
+        "stateId": "32",
+        "stateName": "HARYANA"
+      },
+      {
+        "stateId": "43",
+        "stateName": "HIMACHAL PRADESH"
+      },
+      {
+        "stateId": "46",
+        "stateName": "UTTAR PRADESH"
+      },
+      {
+        "stateId": "47",
+        "stateName": "JHARKHAND"
+      },
+      {
+        "stateId": "100",
+        "stateName": "CHHATTISGARH"
+      },
+      {
+        "stateId": "276",
+        "stateName": "ANDHRA PRADESH"
+      },
+      {
+        "stateId": "296",
+        "stateName": "MAHARASHTRA"
+      }
+    ]
+  }
+}

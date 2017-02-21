@@ -3,12 +3,12 @@
 
 angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.menuService','ngStorage', 'myApp.storageService','ng.deviceDetector', 'myApp.requestService','myApp.biddingCtrl','myApp.biddingService'])
 .constant('AppConstant',{
- 	 		/*"APP_URL":"http://182.18.139.136/NamWebService/1.0",*/
-			"APP_URL":"http://192.168.1.235/NamWebService/1.0",
+ 	 		"APP_URL":"http://27.251.120.242:18081/NamWebService/1.0",
+			//"APP_URL":"http://192.168.1.235/NamWebService/1.0",
  	 		"WEB_URL":"http://localhost:3000/",
  	 		"VERSION":"1.0",
  	 		"CLIENT_DATEFORMAT" : "dd/MM/yyyy HH:mm:ss",
- 	 		"SERVER_DATEFORMAT" : "yyyy-mm-dd'T'hh:MM:ss'Z'o",
+ 	 		"SERVER_DATEFORMAT" : "yyyy-MM-dd'T'HH:mm:ss'Z'Z",
  	 		"DEV_MODE": true 
  	 })
  	 .config(['$httpProvider','$mdThemingProvider','growlProvider','$translateProvider', '$translatePartialLoaderProvider','AppConstant', function($httpProvider, $mdThemingProvider, growlProvider, $translateProvider, $translatePartialLoaderProvider, AppConstant){
@@ -29,8 +29,12 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
    		    $translateProvider.useSanitizeValueStrategy('sanitize');
 			$translateProvider.preferredLanguage('en-IN');
  	 }])
- 	 .factory('httpInjector', ['CommonRequestServ','AppConstant','UtilsServ', function(CommonRequestServ, AppConstant, UtilsServ) {  
+ 	 .factory('httpInjector', ['CommonRequestServ','AppConstant','UtilsServ', 'StorageService',function(CommonRequestServ, AppConstant, UtilsServ, StorageService) {  
  	 	var deviceInfo = CommonRequestServ.getdeviceInfomation();
+ 	 	var userInfo = StorageService.getUserDetails('userInfo');
+ 	 	var KeySign = (UtilsServ.isUndefinedOrNull(userInfo)) ? "" : UtilsServ.getEncryptedKS(UtilsServ.getKeySign(userInfo.userId,0,UtilsServ.setDateFormat().toString()),userInfo.secureToken);
+ 	 	var timestamp = new Date().getTime();
+
         var httpInjector = {
             request: function(config) {
             	if(config.data !==null && config.data !== undefined){
@@ -38,9 +42,9 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
 						    "version": "1.0",
 						    "ts": UtilsServ.setDateFormat().toString(),
 						    "txn": new Date().getUTCMilliseconds(),
-						    "keySign": "",
+						    "keySign": KeySign,
 						    "keyIndex": "",
-						    "sessionRefId": "",
+						    "sessionRefId": (UtilsServ.isUndefinedOrNull(userInfo))  ? "" : userInfo.userId+timestamp+Math.random(),
 						    "lang": "en",
 						    "deviceInfo": {
 						      "os": deviceInfo.os,
@@ -48,7 +52,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
 						      "deviceType": (deviceInfo.device === "unknown") ? "B" : deviceInfo.device,
 						      "deviceId": "",
 						      "publicIp": "192.168.0.99",
-						      "browser": deviceInfo.raw.userAgent,
+						      "browser": deviceInfo.browser+' '+deviceInfo.os_version,
 						      "appVersion" : AppConstant.VERSION
 						    }
 						  }	
@@ -64,6 +68,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
  	 	$rootScope.menus = MenuService.getParentMenu();
 	    $rootScope.childMenus = MenuService.getChildMenu();
 	    var userInfo = AuthServ.userDetails();
+	    $rootScope.userInfo = userInfo;
 
  	 	if(!UtilsServ.isUndefinedOrNull(userInfo) && UtilsServ.isSessionExpire(userInfo.sessionExpiryTime)){
  	 			$rootScope.isLogin = true;
@@ -71,7 +76,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
  	 			return true;
  	 	}else{
  	 		$timeout(function() {
-		        $state.go('login');
+		        $state.go('home');
 		    });
  	 		return true;
  	 	} 	 	
