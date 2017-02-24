@@ -7,9 +7,9 @@
 			userInfo =StorageService.getUserDetails('userInfo');
 			return userInfo;
 		};
-		var SaveUserDetails = function(){
-			userInfo =StorageService.getUserDetails('userInfo');
-			return userInfo;
+		var SaveUserDetails = function(user){
+			StorageService.setUserDetails('userInfo', user);
+			userInfo = user;
 		};
 		var Login = function(){
 			return $resource(AppConstant.APP_URL+'/user/login/');
@@ -17,7 +17,7 @@
 		var Logout = function(){
 			return $resource(AppConstant.APP_URL+'/user/logout');
 		};
-		
+
 		return {
 			'userDetails': UserDetails,
 			'setUserDetails' : SaveUserDetails,
@@ -26,3 +26,4 @@
 		};
 	}]);
 })();
+

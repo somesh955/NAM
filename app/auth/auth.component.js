@@ -3,12 +3,13 @@
 
 	angular.module('myApp.authCtrl',[])
 
-	.controller('authController', function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate){
+	.controller('authController',['$scope', '$rootScope', 'AuthServ', '$state', 'UtilsServ', 'growl', 'LoggerServ', '$translatePartialLoader', '$translate', 'AppConstant' ,function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate, AppConstant){
 
         $translatePartialLoader.addPart('login');
         $translate.refresh();
 
         $scope.login = function(){
+            $scope.user.apiKey = AppConstant.API_KEY;
         	AuthServ.login().save({"loginRequest":$scope.user},function(response){
         		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
@@ -22,5 +23,20 @@
         		}        		
         	});
         };
-    });
+
+        $scope.logout = function(){
+            AuthServ.logout().save({},function(response){
+                if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+                    LoggerServ.log(response);
+                    growl.success("User logout Successfully!!!");
+                    $rootScope.isLogin = false;
+                    AuthServ.setUserDetails(null);
+                    $state.go('home');
+                }else{
+                    LoggerServ.log(response);
+                    growl.error(response.responseHeader.errMsg);
+                } 
+            });
+        }
+    }]);
 })();

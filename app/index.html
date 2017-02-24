@@ -7,7 +7,6 @@
   <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="resources/css/custom-responsive.css"/>
   <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
-  <link rel="stylesheet" type="text/css" href="resources/css/styles1.css"/>
   <link rel="stylesheet" type="text/css" href="resources/css/style_white.css"/>
   <link rel="stylesheet" type="text/css" href="resources/css/home-style.css"/>
   <link rel="stylesheet" type="text/css" href="resources/css/green-box.css"/>
@@ -17,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="resources/css/angular-material.min.css">
   <link rel="stylesheet" type="text/css" href="resources/css/md-data-table.min.css">
   <link rel="stylesheet" type="text/css" href="resources/css/angular-growl.css">
+  
   <script>
   function feedbackPopUp() {
     var vars = window.location.search;
@@ -63,6 +63,8 @@
     <script type='text/javascript' src='resources/js/re-tree.min.js'></script>
     <script type='text/javascript' src='resources/js/dateformat.js'></script>
     <script type="text/javascript" src="resources/js/crypto-js.min.js"></script>
+    <script type="text/javascript" src="resources/js/spin.min.js"></script>
+    <script type="text/javascript" src="resources/js/angular-spinner.js"></script>
 
 	
     <script src="./app.js"></script>
@@ -72,6 +74,7 @@
     <script src="common/services/menu.service.js"></script>
     <script src="common/services/storage.service.js"></script>
     <script src="common/services/request.service.js"></script>
+    <script src="common/services/spinner.service.js"></script>
     <script src="auth/auth.component.js"></script>
     <script src="auth/auth.service.js"></script>
     <script src="home/home.component.js"></script>
@@ -80,5 +83,16 @@
     <script src="dashboard/dashboard.service.js"></script>
   	<script src="bidding/bidding.component.js"></script>
     <script src="bidding/bidding.service.js"></script>
+	<span us-spinner="{radius:10, width:5, length: 10}" spinner-key="spinner-1"></span>
   </body>
+<!--   <script>
+    $(document).ready(function(){
+			$('#myModal').modal(options);
+            $('#navbar-collapse-bid').hide();
+            $('.navtoggle-bid').click(function(){
+               $('#navbar-collapse-bid').slideToggle(); 
+            });
+		});
+		
+		</script> -->
 </html>

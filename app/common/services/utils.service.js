@@ -54,9 +54,11 @@
 			   }
 			   return result;
 		};
+
    		var encrypt = function (text, masterkey){
 		    var hash = CryptoJS.AES.encrypt(text, masterkey);
-		     return hash.toString();
+		    var u8 = new Uint8Array(hash);
+		     return btoa(String.fromCharCode.apply(null, u8));
 		};
 		var decrypt = function (text, masterkey){
 		    var bytes = CryptoJS.AES.decrypt(text, masterkey);

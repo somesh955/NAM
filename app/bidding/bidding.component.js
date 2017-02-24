@@ -3,48 +3,111 @@
 
 	angular.module('myApp.biddingCtrl',[])
 
-	.controller('biddingController', ['$scope', 'AuthServ','MasterServ','BiddingServ','UtilsServ','LoggerServ','growl',function($scope, AuthServ, MasterServ, BiddingServ, UtilsServ, LoggerServ, growl){        
+	.controller('biddingController', ['$scope', 'AuthServ','MasterServ','BiddingServ','UtilsServ','LoggerServ','growl','Spinner',function($scope, AuthServ, MasterServ, BiddingServ, UtilsServ, LoggerServ, growl, Spinner){        
 
-	     $scope.onInit = function(){
-	     	$scope.stateList = AuthServ.userDetails().stateResponse;
-	     };
+		$scope.onInit = function(){
+			$scope.getbidGridList();
+			if((AuthServ.userDetails().userType) === "G"){		 
+				$scope.stateList = AuthServ.userDetails().stateResponse;
+			}else if((AuthServ.userDetails().userType) === "S"){
+				$scope.stateList = AuthServ.userDetails().stateResponse;
+				$scope.state=AuthServ.userDetails().stateResponse[0].stateId;			 
+				$scope.getApmcList($scope.state);
+			}else{
+				$scope.stateList = AuthServ.userDetails().stateResponse;
+				$scope.state=AuthServ.userDetails().stateResponse[0].stateId;
+				$scope.getApmcList($scope.state);
+			}		 
+		};
 
-	     $scope.getApmcList = function(stateId){
-	     	MasterServ.getApmcList().save({"apmcRequest" :{"stateId": stateId}},function(response){
-        		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
-                    LoggerServ.log(response);
-                    $scope.ammcList = response.responseHeader;
-        		}else{
-                    LoggerServ.log(response);
-        			growl.error(response.responseHeader.errMsg);
-        		}        		
-        	});
-	     };
+		$scope.getApmcList = function(state){
+			Spinner.startSpin();
+			MasterServ.getApmcList().save({"apmcRequest" :{"stateId": state}},function(response){	     		
+				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					$scope.apmcList = response.apmcDetails;
+					Spinner.stopSpin();
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.responseHeader.errMsg);
+					Spinner.stopSpin();
+				}        		
+			});
+		};
 
-	     $scope.getCommodityList = function(apmcId){
-	     	MasterServ.getCommodityList().save({"commodityRequest" :{"apmcId": apmcId}},function(response){
-        		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
-                    LoggerServ.log(response);
-                    $scope.commodityList = response.responseHeader;
-        		}else{
-                    LoggerServ.log(response);
-        			growl.error(response.responseHeader.errMsg);
-        		}        		
-        	});
-	     };
+		$scope.getCommodityList = function(apmcId){
+			Spinner.startSpin();
+			MasterServ.getCommodityList().save({"commodityRequest" :{"apmcId": apmcId}},function(response){
+				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					$scope.commodityList = response.commodityDetails;
+					Spinner.stopSpin();
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.responseHeader.errMsg);
+					Spinner.stopSpin();
+				}        		
+			});
+		};
 
-	     $scope.getCategoryList = function(apmcId){
-	     	MasterServ.getCategoryList().save({"agentRequest" :{"apmcId": apmcId}},function(response){
-        		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
-                    LoggerServ.log(response);
-                    $scope.catList = response.responseHeader;
-        		}else{
-                    LoggerServ.log(response);
-        			growl.error(response.responseHeader.errMsg);
-        		}        		
-        	});
-	     };
+		$scope.getAgentList = function(apmcId){
+			Spinner.startSpin();
+			MasterServ.getAgentList().save({"agentRequest" :{"apmcId": apmcId}},function(response){
+				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					$scope.agentList = response.caDetails;
+					Spinner.stopSpin();
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.responseHeader.errMsg);
+					Spinner.stopSpin();
+				}        		
+			});
+		};
 
-	     $scope.onInit();
-    }]);
+		$scope.getbidGridList=function(){			
+			Spinner.startSpin();
+			BiddingServ.getBidTableColumnList().get({},function(response){
+				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					$scope.autocolumn = response.bidColumnList;
+					Spinner.stopSpin();
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.responseHeader.errMsg);
+					Spinner.stopSpin();
+				}        		
+			});			
+		};
+
+		$scope.getbidList=function(bidModel){
+			Spinner.startSpin();
+			BiddingServ.getBidList().save({"newBidRequest" :bidModel},function(response){
+				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					$scope.bidingGrid = response.newBids;
+					Spinner.stopSpin();
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.responseHeader.errMsg);
+					Spinner.stopSpin();
+				}        		
+			});			
+		};
+
+		$scope.bidSubmission=function(bidModel){			 
+			BiddingServ.bidSubmission().save({"bidSubmitRequest" :{"txnOprId": bidValue.oprId,"lotId": bidValue.lotId,"bidRate": bidValue.bidRate,"bidTranId": bidValue.bidTranId,"bidType": bidValue.bidType,"startDate": bidValue.startDate,"endDate": bidValue.endDate,"extendedDate": bidValue.extendedEndTime}},function(response){
+				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+					LoggerServ.log(response);
+					$scope.bidingGrid = response.bidSubmitResponse;
+					$scope.getbidGridList($rootScope.bid);
+				}else{
+					LoggerServ.log(response);
+					growl.error(response.responseHeader.errMsg);
+				}        		
+			});			
+		};
+
+		$scope.onInit();
+	}]);
 })();

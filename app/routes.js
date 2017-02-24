@@ -26,6 +26,12 @@
                 url: '/login',
                 templateUrl: './auth/login.component.html',
                 controller: 'authController'    
+            })
+            .state('logout', {
+                url: '/logout',
+                template: '',
+                abstract:true,
+                controller: 'authController'    
             });
             
     });

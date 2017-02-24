@@ -1,7 +1,8 @@
-<header class="header-section ng-scope" style="position: fixed;width: 100%;z-index: 99;">
+
+<header class="header-bid ng-scope" ng-if="isLogin == false">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-sm-6">
+      <div class=" col-xs-12 col-sm-12 col-md-6">
         <div class="india-logo">
           <img alt="India" src="resources/pix/india-logo.png">
           <div class="india-name">GOVERNMENT<br> OF INDIA</div>
@@ -12,15 +13,20 @@
           Ministry of Agriculture and Farmers' Welfare, Government of India
         </div>
       </div>
-      <div class="col-lg-6 col-sm-6">
-        <div class="header-right-section">
-          <div class="header-right-list">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+	    <div class="row">
+         <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="header-right-list india-logo">
             <img src="resources/pix/help-no.png">
-          </div>
-          <div class="header-right-list login-btns">
+          </div> </div>
+		   <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="header-right-list india-logo">
             <a class="border" href="#/login" title="Login"><img src="resources/pix/login-icon.png"></a>
           </div>
+		   </div>
+		   </div>
 
+			<div class="header-right-section" >
           <div class="header-right-list">
             <div class="font-size-change">
               <a class="font-A--btn" href="javascript:void()">A-</a>
@@ -36,7 +42,7 @@
               <a class="orange-theme-btn" onclick="changetheme('orange-box');" href="javascript:void();"><span class="orange-box">&nbsp;&nbsp;&nbsp;</span></a>
             </div>
           </div>
-          <div class="header-right-list" style="position:relative;z-index: 10;">
+          <div class="header-right-list">
             <div class="form-group">
               <label for="sel1" style="color:#fff"> Language:</label>
               <select onchange="location = this.options[this.selectedIndex].value;" class="form-control" style="height: 28px !important;padding: 3px 0px  !important;" id="sel1" default="English">
@@ -53,3 +59,35 @@
   </div>
 </header>
 
+
+ 
+ 
+ <header class="header-bid ng-scope"  ng-if="isLogin == true">
+        <div class="container">
+            <div class="row">
+                <div class=" col-xs-12 col-sm-12 col-md-3 logo-bid">
+                    <img src="resources/images/brandename.png" alt="ename"/>
+                </div>
+                 <div class="col-xs-12 col-sm-12 col-md-9 clearfix bid-admin-right">
+                     <div class="col-md-12 admin-name">
+                          <ul>
+						   <!-- <li ng-click="logout()"> LOGOUT </li> -->
+						                 <li>{{clock | date :  "dd/MM/y H:mm:ss"}}</li>
+                             <li><div class="row"><div class="col-md-4 col-sm-4 col-xs-12 col-md-offset-4 col-sm-offset-4"><select class="form-control" ng-model="state" ng-options="state.stateId as state.stateName for state in userInfo.stateResponse" >
+                              <option value="null">--Select--</option>
+                              </select></div></div></li>
+                             <li class="dropdown admin-name-res">
+                                <a class="dropdown-toggle admin-name-clr" data-toggle="collapse" data-target="#dropdown" aria-expanded="false">{{userInfo.userName}}
+                                <span class="caret"></span></a>
+                                <ul class="dropdown-menu admin-submenu">
+                                  <li><a href="#" data-toggle="modal"  data-target="#myModal"><i class="fa fa-cogs font-black" aria-hidden="true"></i>Preference</a></li>
+                                    <li><a href="#"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
+                                </ul>
+                             </li>
+    
+                        </ul>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </header>

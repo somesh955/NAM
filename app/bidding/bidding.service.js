@@ -9,14 +9,14 @@
 		var CommodityList = function(){
 			return $resource(AppConstant.APP_URL+'/masters/getCommodity'); 
 		};
-		var CategoryList = function(){
+		var AgentList = function(){
 			return $resource(AppConstant.APP_URL+'/masters/getCa'); 
 		};
 
 		return {
 			"getApmcList" : ApmcList,
 			"getCommodityList" : CommodityList,
-			"getCategoryList" : CategoryList,
+			"getAgentList" : AgentList,
 		};
 
 	})
@@ -34,7 +34,7 @@
 			return $resource(AppConstant.APP_URL+'/bidding/setPreferredCommodity');				
 		};
 		var BidTableColumnList = function(){
-			return $resource(AppConstant.WEB_URL+'/resources/data/bid-list-grid.json');;
+			return $resource(AppConstant.WEB_URL+'resources/data/v.0/bid-list-grid.json');;
 		};
 
 		return {
