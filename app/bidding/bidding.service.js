@@ -21,8 +21,17 @@
 
 	})
 	.factory('BiddingServ',function($resource, AppConstant){
+		var BidSearch = {};
+
+		var getBidSearch = function(){
+			return BidSearch;
+		};
+		var setBidSearch = function(Bid){
+			return this.BidSearch = Bid;
+		};
+
 		var BidList = function(){
-			return $resource(AppConstant.APP_URL+'/bidding/getNewBid');     
+			return $resource(AppConstant.WEB_URL+'resources/data/v.0/biddingDetails.json'); ///bidding/getNewBid    
 		};
 		var NewBid = function(){
 			return $resource(AppConstant.APP_URL+'/bidding/auctionBidSubmission');				
@@ -38,8 +47,10 @@
 		};
 
 		return {
+			"getBidSearch": getBidSearch,
+			"setBidSearch": setBidSearch,
 			"getBidList": BidList,
-			"doBid" : NewBid,
+			"bidSubmit" : NewBid,
 			"getAllCommodityBid" : AllCommodityBid,
 			"setPreferredCommodity" : PreferredCommodity,
 			"getBidTableColumnList" : BidTableColumnList

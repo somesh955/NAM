@@ -1,4 +1,10 @@
 {
+  "responseHeader": {
+    "ts": "2017-02-25T03:24:15Z+05:30",
+    "txn": "123",
+    "respCode": "0",
+    "statusMsg": "S"
+  },
   "bidingGrid": [
     {
       "bidStatus": "O",
@@ -759,7 +765,5 @@
       "submitMultiBid": "Y",
       "tranId": "2016110491210004416",
       "wbWeight": "1.7500"
-    }
-  ],
-  "statusMsg": "S"
+    }]
 }

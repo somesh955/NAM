@@ -81,11 +81,12 @@
 		};
 
 		$scope.getbidList=function(bidModel){
+			BiddingServ.setBidSearch(bidModel);
 			Spinner.startSpin();
-			BiddingServ.getBidList().save({"newBidRequest" :bidModel},function(response){
+			BiddingServ.getBidList().get({"newBidRequest" :bidModel},function(response){
 				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
 					LoggerServ.log(response);
-					$scope.bidingGrid = response.newBids;
+					$scope.bidingGrid = response.bidingGrid;
 					Spinner.stopSpin();
 				}else{
 					LoggerServ.log(response);
@@ -95,15 +96,18 @@
 			});			
 		};
 
-		$scope.bidSubmission=function(bidModel){			 
-			BiddingServ.bidSubmission().save({"bidSubmitRequest" :{"txnOprId": bidValue.oprId,"lotId": bidValue.lotId,"bidRate": bidValue.bidRate,"bidTranId": bidValue.bidTranId,"bidType": bidValue.bidType,"startDate": bidValue.startDate,"endDate": bidValue.endDate,"extendedDate": bidValue.extendedEndTime}},function(response){
+		$scope.bidSubmission=function(bidModel){	
+			Spinner.startSpin();		 
+			BiddingServ.bidSubmit().save({"bidSubmitRequest" : bidModel},function(response){
 				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
 					LoggerServ.log(response);
 					$scope.bidingGrid = response.bidSubmitResponse;
-					$scope.getbidGridList($rootScope.bid);
+					$scope.getbidGridList(BiddingServ.getBidSearch);
+					Spinner.stopSpin();
 				}else{
 					LoggerServ.log(response);
 					growl.error(response.responseHeader.errMsg);
+					Spinner.stopSpin();
 				}        		
 			});			
 		};
