@@ -1,69 +1,80 @@
-{
-	"responseHeader": {
-		"ts": "2017-02-25T03:24:15Z+05:30",
-		"txn": "123",
-		"respCode": "0",
-		"statusMsg": "S"
-	},
-	"bidColumnList": [{
-		"name": "oprName",
-		"display": "APMC"
-	}, { 
-		"name": "productName",
-		"display": "Commodity"
-	}, { 
-		"name": "lotCode",
-		"display": "Lot Code"
-	}, { 
-		"name": "commissionAgent",
-		"display": "Agent"
-	}, { 
-		"name": "wbWeight",
-		"display": "No of Bags"
-	}, { 
-		"name": "wbWeight",
-		"display": "Commodity UOM Qty"
-	}, { 
-		"name": "0",
-		"display": "Min Bid"
-	}, { 
-		"name": "0",
-		"display": "Last Bid"
-	}, { 
-		"name": "0 ",
-		"display": "My Bid "
-	}, { 
-		"name": "timeRemain ",
-		"display": "Time Remain "
-	}, { 
-		"name": "",
-		"display": "New Bid "
-	}, { 
-		"name": "",
-		"display": "Bid "
-	}, {
-		"name": "",
-		"display": "Certificate"
-	}, { 
-		"name": "seller",
-		"display": "Seller"
-	}, { 
-		"name": "",
-		"display": "Village"
-	}, { 
-		"name": "",
-		"display": "Test Results"
-	}, { 
-		"name": "startDate",
-		"display": "Start Date"
-	}, { 
-		"name": "endDate",
-		"display": "End Date"
-	}, { 
-		"name": "submitMultiBid",
-		"display": "Re-Bid Allowed"
-	}, { 
-		"name": "extendedEndTime",
-		"display": "Extended Date"
-	}]
+[{//Define the Table content
+  	"name": "oprName", //The identifier name
+  	"display": "APMC" //the name that will be displayed
+  }
+,  { //Add as many columns as you need
+	"name": "productName",
+	"display": "Commodity"
 }
+,  { //Add as many columns as you need
+	"name": "lotCode",
+	"display": "Lot Code"
+}
+,  { //Add as many columns as you need
+	"name": "commissionAgent",
+	"display": "Agent"
+}
+,  { //Add as many columns as you need
+	"name": "wbWeight",
+	"display": "No of Bags"
+}
+,  { //Add as many columns as you need
+	"name": "wbWeight",
+	"display": "Commodity UOM Qty"
+}
+,  { //Add as many columns as you need
+	"name": "0",
+	"display": "Min Bid"
+}
+,  { //Add as many columns as you need
+	"name": "0",
+	"display": "Last Bid"
+}
+,  { //Add as many columns as you need
+	"name"": "0",
+	"display"": "My Bid"
+}
+,  { //Add as many columns as you need
+	"name"": "timeRemain",
+	"display"": "Time Remain"
+}
+,  { //Add as many columns as you need
+	"name"": "",
+	"display"": "New Bid"
+}
+,  { //Add as many columns as you need
+	"name"": "",
+	"display"": "Bid"
+}
+,  { //Add as many columns as you need
+	"name": "",
+	"display": "Certificate"
+}
+,  { //Add as many columns as you need
+	"name": "seller",
+	"display": "Seller"
+}
+,  { //Add as many columns as you need
+	"name": "",
+	"display": "Village"
+}
+,  { //Add as many columns as you need
+	"name": "",
+	"display": "Test Results"
+}
+,  { //Add as many columns as you need
+	"name": "startDate",
+	"display": "Start Date"
+}
+,  { //Add as many columns as you need
+	"name": "endDate",
+	"display": "End Date"
+}
+,  { //Add as many columns as you need
+	"name": "submitMultiBid",
+	"display": "Re-Bid Allowed"
+}
+,  { //Add as many columns as you need
+	"name": "extendedEndTime",
+	"display": "Extended Date"
+}]

@@ -1,9 +1,9 @@
- (function(){
+(function(){
  	'use-strict',
 
 angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.menuService','ngStorage', 'myApp.storageService','ng.deviceDetector', 'myApp.requestService','myApp.biddingCtrl','myApp.biddingService','angularSpinner','myApp.SpinnerService'])
 .constant('AppConstant',{
- 	 		"APP_URL":"http://27.251.120.242:18081/NamWebService/1.0",
+ 	 		"APP_URL":"http://45.118.182.35:7080/NamWebService/1.0",
 			//"APP_URL":"http://192.168.1.235/NamWebService/1.0",
  	 		"WEB_URL":"http://localhost:3000/",
  	 		"VERSION":"1.0",
@@ -35,7 +35,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
  	 .factory('httpInjector', ['CommonRequestServ','AppConstant','UtilsServ', 'StorageService',function(CommonRequestServ, AppConstant, UtilsServ, StorageService) {  
  	 	var deviceInfo = CommonRequestServ.getdeviceInfomation();
  	 	var userInfo = StorageService.getUserDetails('userInfo');
- 	 	var KeySign = (UtilsServ.isUndefinedOrNull(userInfo)) ? "" : UtilsServ.getEncryptedKS(UtilsServ.getKeySign(userInfo.userId,0,UtilsServ.setDateFormat().toString()),userInfo.secureToken);
+ 	 	var KeySign = (UtilsServ.isUndefinedOrNull(userInfo)) ? "" : UtilsServ.getEncryptedKS(UtilsServ.getKeySign(userInfo.userId,"01",UtilsServ.setDateFormat().toString()),userInfo.secureToken);
  	 	var timestamp = new Date().getTime();
 
         var httpInjector = {
@@ -47,7 +47,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
 						    "txn": new Date().getUTCMilliseconds(),
 						    "keySign": KeySign,
 						    "keyIndex": "",
-						    "sessionRefId": (UtilsServ.isUndefinedOrNull(userInfo))  ? "" : userInfo.userId+timestamp,
+						    "sessionRefId": (UtilsServ.isUndefinedOrNull(userInfo))  ? "" : userInfo.sessionRefId,
 						    "lang": "en",
 						    "deviceInfo": {
 						      "os": deviceInfo.os,
@@ -90,7 +90,7 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
                 $rootScope.isLogin = false;
                 AuthServ.setUserDetails(null);
                 $timeout(function() {
-			        $state.go('home');
+			        $state.go('login');
 			    });
             }); 	 		
  	 		return true;

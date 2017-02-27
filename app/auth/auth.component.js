@@ -1,27 +1,27 @@
 (function(){
-	'use-strict',
+    'use-strict',
 
-	angular.module('myApp.authCtrl',[])
+    angular.module('myApp.authCtrl',[])
 
-	.controller('authController',['$scope', '$rootScope', 'AuthServ', '$state', 'UtilsServ', 'growl', 'LoggerServ', '$translatePartialLoader', '$translate', 'AppConstant' ,function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate, AppConstant){
+    .controller('authController',['$scope', '$rootScope', 'AuthServ', '$state', 'UtilsServ', 'growl', 'LoggerServ', '$translatePartialLoader', '$translate', 'AppConstant' ,function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate, AppConstant){
 
         $translatePartialLoader.addPart('login');
         $translate.refresh();
 
         $scope.login = function(){
             $scope.user.apiKey = AppConstant.API_KEY;
-        	AuthServ.login().save({"loginRequest":$scope.user},function(response){
-        		if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+            AuthServ.login().save({"loginRequest":$scope.user},function(response){
+                if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
-        			growl.success("User Login Successfully!!!");
+                    growl.success("User Login Successfully!!!");
                     $rootScope.isLogin = true;
-					AuthServ.setUserDetails(response.userDetails);
-    				$state.go('dashboard');
-        		}else{
+                    AuthServ.setUserDetails(response.userDetails);
+                    $state.go('dashboard');
+                }else{
                     LoggerServ.log(response);
-        			growl.error(response.responseHeader.errMsg);
-        		}        		
-        	});
+                    growl.error(response.responseHeader.errMsg);
+                }               
+            });
         };
 
         $scope.logout = function(){

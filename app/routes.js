@@ -21,7 +21,8 @@
                 url: '/newBidList',
                 templateUrl: './bidding/bidding.component.html',
                 controller: 'biddingController'
-            })            
+            }) 
+			
             .state('login', {
                 url: '/login',
                 templateUrl: './auth/login.component.html',

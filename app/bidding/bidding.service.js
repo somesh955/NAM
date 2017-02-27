@@ -9,29 +9,20 @@
 		var CommodityList = function(){
 			return $resource(AppConstant.APP_URL+'/masters/getCommodity'); 
 		};
-		var AgentList = function(){
+		var CommisionAgentList = function(){
 			return $resource(AppConstant.APP_URL+'/masters/getCa'); 
 		};
 
 		return {
 			"getApmcList" : ApmcList,
 			"getCommodityList" : CommodityList,
-			"getAgentList" : AgentList,
+			"getCAList" : CommisionAgentList,
 		};
 
 	})
 	.factory('BiddingServ',function($resource, AppConstant){
-		var BidSearch = {};
-
-		var getBidSearch = function(){
-			return BidSearch;
-		};
-		var setBidSearch = function(Bid){
-			return this.BidSearch = Bid;
-		};
-
 		var BidList = function(){
-			return $resource(AppConstant.WEB_URL+'resources/data/v.0/biddingDetails.json'); ///bidding/getNewBid    
+			return $resource(AppConstant.APP_URL+'/bidding/getNewBid');     
 		};
 		var NewBid = function(){
 			return $resource(AppConstant.APP_URL+'/bidding/auctionBidSubmission');				
@@ -43,17 +34,15 @@
 			return $resource(AppConstant.APP_URL+'/bidding/setPreferredCommodity');				
 		};
 		var BidTableColumnList = function(){
-			return $resource(AppConstant.WEB_URL+'resources/data/v.0/bid-list-grid.json');;
+			return $resource(AppConstant.WEB_URL+'/resources/data/bid-list-grid.json');;
 		};
 
 		return {
-			"getBidSearch": getBidSearch,
-			"setBidSearch": setBidSearch,
 			"getBidList": BidList,
-			"bidSubmit" : NewBid,
+			"bidSubmission" : NewBid,
 			"getAllCommodityBid" : AllCommodityBid,
 			"setPreferredCommodity" : PreferredCommodity,
-			"getBidTableColumnList" : BidTableColumnList
+			"getBidTableColumnList" : BidTableColumnList,
 		};
 
 	});
