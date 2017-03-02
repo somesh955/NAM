@@ -2,7 +2,7 @@
 	<div class="container" >
 		<div class="row">
 			<div class="page-header"> <span class="red text-center">
-				<h4>Please Refresh to View Dashboard Realated Data </h4>
+				<h4>Please Refresh to View Dashboard Related Data </h4>
 			</span> </div>
 		</div>
 		<div class="row">
@@ -16,7 +16,7 @@
 							<div class="form-group row">
 								<label for="date" class="col-sm-4 col-form-label">Date</label>
 								<div class="col-sm-8">
-									<input class="form-control" id="date" placeholder="" type="date">
+									<input class="form-control" id="txtdateid" ng-model="txtsrchdate" placeholder="" type="date">
 								</div>
 							</div>
 						</div>
@@ -24,7 +24,7 @@
 							<div class="form-group row">
 								<label for="text" class="col-sm-4 col-form-label">Lot Code</label>
 								<div class="col-sm-8">
-									<input class="form-control" id="input-text" placeholder="" type="email">
+									<input class="form-control" id="txtlotid" ng-model="txtlotcode" placeholder="" type="text">
 								</div>
 							</div>
 						</div>
@@ -32,12 +32,12 @@
 							<div class="form-group row">
 								<label for="text" class="col-sm-4 col-form-label">Invoice No</label>
 								<div class="col-sm-8">
-									<input class="form-control" id="input-text" placeholder="" type="email">
+									<input class="form-control" id="txtinvid" ng-model="txtinvno" placeholder="" type="text">
 								</div>
 							</div>
 						</div>
 						<div class="col-md-3 search-button">
-							<button type="button" class="btn btn-primery search-button">Search</button>
+							<button type="button" class="btn btn-primery search-button" ng-click="showsearchrslt()">Search</button>
 						</div>
 					</form>
 				</div>
@@ -48,64 +48,30 @@
 				<!-- PAGE CONTENT BEGINS -->
 				<div class="col-xs-12 col-sm-12" id="">    
 					<div class="panel panel-color">
-						<h4 class="panel-heading"> Pendding Amount: </h4>
+						<h4 class="panel-heading"> Pending Invoices </h4>
 					</div>     
-					<div class="Panel-body">
 						<table class="table table-bordered">
 							<thead class="">
 								<tr>
 									<th>Invoice </th>
 									<th>Date</th>
-									<th>Lote code</th>
+									<th>Lot code</th>
 									<th>Selller Name </th>
 									<th>Agent Name</th>
 									<th>Amount</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="">Asds</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
+								<tr ng-repeat="invoicelist in invoicedtl.invoiceModel">
+									<td class="">{{invoicelist.invoiceNo}}</td>
+									<td class="">{{invoicelist.invoiceDate}}</td>
+									<td class="">{{invoicelist.lotCode}}</td>
+									<td class="">{{invoicelist.sellerName}}</td>
+									<td class="">{{invoicelist.commissionAgentName}}</td>
+									<td class="">{{invoicelist.amount}}</td>
 								</tr>
 							</tbody>
 						</table>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -115,107 +81,65 @@
 				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
 
 					<div class="panel panel-color ">
-						<h4 class="panel-heading"> Commodity </h4>
+						<h4 class="panel-heading">My Preferred Commodities </h4>
 					</div>
-					<div class="Panel-body">
+					
 						<table class="table table-bordered">
-							<thead class="thin-border-bottom">
-								<tr>
-									<th>Commodity</th>
-
+							<tbody class="thin-border-bottom theight">
+								<tr ng-repeat="commoditylist in commodity.allPreferredCommodity">
+									<td>{{commoditylist.commodityName}}</td>
 								</tr>
-							</thead>
-							<tbody>
 							</tbody>
+							
 						</table>
-					</div>     
+					     
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
 
 					<div class="panel panel-color">
-						<h4 class="panel-heading"> Trade </h4>
+						<h4 class="panel-heading"> My Trade Details </h4>
 					</div>
-					<div class="Panel-body">
+					
 						<table class="table  table-bordered">
 							<thead>
 
 							</thead>
 							<tbody>
 								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
+									<td class=""></td>
+									<td class=""></td>
+									<td class=""></td>
+									<td class=""></td>
+									<td class=""></td>
 								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
+							
 							</tbody>
 						</table>
-					</div>    
+					   
 				</div>    
 				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
 					<div class="panel  panel-color">
-						<h4 class="panel-heading"> Permits  </h4>
+						<h4 class="panel-heading"> My Permits  </h4>
 					</div>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>Invoice </th>
 								<th>Date</th>
-								<th>Lote code</th>
-								<th>Selller Name </th>
+								<th>Lot code</th>
+								<th>Seller Name </th>
 								<th>Agent Name</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td class="">Asds</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
+								<td class=""></td>
+								<td class=""></td>
+								<td class=""></td>
+								<td class=""></td>
+								<td class=""></td>
 							</tr>
-							<tr>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-							</tr>
-							<tr>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-								<td class="">Alex</td>
-							</tr>      
+							      
 						</tbody>
 					</table>
 
@@ -225,158 +149,61 @@
 		<div class="row">
 			<div class="col-md-12"> 
 				<!-- PAGE CONTENT BEGINS -->
-				<div class="col-xs-12 col-sm-6 col-md-4  panel-table" id="widget-container-col-2">
+				<div class="col-xs-12 col-sm-6 col-md-6  panel-table" id="widget-container-col-2">
 					<div class="panel panel-color ">
-
 						<h4 class="panel-heading"> Outcry/Auction Won </h4>
-
 					</div>
-					<div class="Panel-body">
+					
 						<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Invoice </th>
-									<th>Date</th>
-									<th>Lote code</th>
-									<th>Selller Name </th>
-									<th>Agent Name</th>
+									<th>Auction Type </th>
+									<th>Commodity</th>
+									<th>Lot code</th>
+									<th>Bid Rate</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="">Asds</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
+								<tr ng-repeat="outrcrylist in outcry.allWinningBidsModel">
+									<td class="">{{outrcrylist.auctionType}}</td>
+									<td class="">{{outrcrylist.commodity}}</td>
+									<td class="">{{outrcrylist.lotCode}}</td>
+									<td class="">{{outrcrylist.bidRate}}</td>
 								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
+
 							</tbody>
 						</table>
-					</div>
+					
 				</div>
 
-				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="widget-container-col-2">
+				<div class="col-xs-12 col-sm-6 col-md-6 panel-table" id="widget-container-col-2">
 
 					<div class="panel panel-color">
 						<h4 class="panel-heading"> Security Deposit Details </h4>
 					</div>
-
-					<div class="Panel-body">
 						<table class="table table-bordered ">
 							<thead class="thin-border-bottom">
 								<tr>
 									<th>Invoice </th>
 									<th>Date</th>
-									<th>Lote code</th>
-									<th>Selller Name </th>
+									<th>Lot code</th>
+									<th>Seller Name </th>
 									<th>Agent Name</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td class="">Asds</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
+									<td class=""></td>
+									<td class=""></td>
+									<td class=""></td>
+									<td class=""></td>
+									<td class=""></td>
 								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
-								<tr>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-									<td class="">Alex</td>
-								</tr>
+								
 							</tbody>
 						</table>
-					</div>
-
 				</div>
 			</div>
-		</div>
+		</div><br>
 	</div>	
 </section>
-
-<!-- <div layout="coloumn" layout-xs="column" flex>
-  <div flex ng-cloak>
-	  <md-toolbar class="md-table-toolbar md-default">
-		  <div class="md-toolbar-tools">
-		    <span>Bidding</span>
-		  </div>
-		</md-toolbar>
-
-		
-		<md-table-container>
-		  <table md-table md-progress="promise">
-		    <thead md-head md-order="query.order">
-	            <tr md-row>
-	               <th md-column ng-repeat="column in autocolumn" md-order-by="{{column.name}}">
-	                  <span>{{column.display}}</span>
-	               </th>
-	            </tr>
-	         </thead>
-		    <tbody md-body>
-		      <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="obj in bidList | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-		        <td md-cell>{{obj.oprName}}</td>
-		        <td md-cell>{{obj.productName}}</td>
-		        <td md-cell>{{obj.lotCode}}</td>
-		        <td md-cell>{{obj.commissionAgent | uppercase}}</td>
-		        <td md-cell>{{obj.wbWeight}}</td>
-		        <td md-cell>{{obj.wbWeight}}</td>
-		        <td md-cell>{{obj.mspBidRate}}</td>
-		        <td md-cell>{{obj.maxOpenBidVal}}</td>
-		        <td md-cell>{{obj.lastBidVal}}</td>
-		        <td md-cell>{{'Time Remain'}}</td>
-		        <td md-cell><input type="number" ng-model="bidRate" min="{{obj.mspBidRate}}"/></td>
-		        <td md-cell><input type="button" value="Bid" ng-click="postBid(obj, bidRate)"/></td>
-		        <td md-cell><input type="button" value="Show" ng-click="getBid()"/></td>
-		        <td md-cell>{{obj.seller}}</td>
-		        <td md-cell>{{''}}</td>
-		        <td md-cell><input type="button" value="Show"/></td>
-		        <td md-cell>{{obj.startDate}}</td>
-		        <td md-cell>{{obj.endDate}}</td>
-		        <td md-cell>{{(obj.submitMultiBid == 'Y') ? 'Yes': 'No'}}</td>
-		        <td md-cell>{{obj.extendedEndTime}}</td>
-		      </tr>
-		    </tbody>
-		  </table>
-		</md-table-container>
-
-		<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{bidList.length}}" md-page-select="options.pageSelect"></md-table-pagination>
-	</div>
-</div> -->

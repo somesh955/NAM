@@ -1,35 +1,40 @@
 (function(){
  	'use-strict',
 
-angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService','myApp.authCtrl','myApp.authService','myApp.utilService','myApp.homeCtrl','myApp.homeService','infinite-scroll','ngMaterial','md.data.table','angular-growl', 'ngAnimate','myApp.dashboardCtrl','myApp.dashboardService','myApp.menuService','ngStorage', 'myApp.storageService','ng.deviceDetector', 'myApp.requestService','myApp.biddingCtrl','myApp.biddingService','angularSpinner','myApp.SpinnerService'])
+angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.router','myApp.routes','myApp.loggerService',
+	'myApp.authCtrl','myApp.authService',
+	'myApp.utilService','infinite-scroll',
+	'angular-growl', 'ngAnimate','myApp.menuService',
+	'ngStorage', 'myApp.storageService','ng.deviceDetector', 'myApp.requestService',
+	'myApp.homeCtrl','myApp.homeService',
+	'myApp.dashboardCtrl','myApp.dashboardService',
+	'myApp.biddingCtrl','myApp.biddingService',
+	'angularSpinner','myApp.SpinnerService','ui.bootstrap',
+	'myApp.bidhistoryCtrl','myApp.bidhistoryService'
+	])
 .constant('AppConstant',{
  	 		"APP_URL":"http://45.118.182.35:7080/NamWebService/1.0",
-			//"APP_URL":"http://192.168.1.235/NamWebService/1.0",
+			//"APP_URL":"http://192.168.0.99:8080/NamWebService/1.0",
  	 		"WEB_URL":"http://localhost:3000/",
  	 		"VERSION":"1.0",
- 	 		"CLIENT_DATEFORMAT" : "dd/MM/yyyy HH:mm:ss",
+ 	 		"CLIENT_DATEFORMAT" : "dd/MM/yyyy HH:mm",
  	 		"SERVER_DATEFORMAT" : "yyyy-MM-dd'T'HH:mm:ss'Z'Z",
  	 		"DEV_MODE": true ,
  	 		"API_KEY" : "123456789"
  	 })
- 	 .config(['$httpProvider','$mdThemingProvider','growlProvider','$translateProvider', '$translatePartialLoaderProvider','AppConstant', function($httpProvider, $mdThemingProvider, growlProvider, $translateProvider, $translatePartialLoaderProvider, AppConstant){
+ 	 .config(['$httpProvider','growlProvider','$translateProvider', '$translatePartialLoaderProvider','AppConstant', function($httpProvider, growlProvider, $translateProvider, $translatePartialLoaderProvider, AppConstant){
  	 		$httpProvider.interceptors.push('httpInjector');
  	 		$httpProvider.defaults.useXDomain = true;
  	 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
  	 		$httpProvider.defaults.headers.common['Content-Type'] = 'application/json';
 
- 	 		$mdThemingProvider.theme('default')
-		    .primaryPalette('purple')
-    		.accentPalette('green');
-
-    		growlProvider.globalTimeToLive({success: 2000, error: 3000, warning: 4000, info: 5000});
+ 	 		growlProvider.globalTimeToLive({success: 2000, error: 3000, warning: 4000, info: 5000});
    		    
    		    $translateProvider.useLoader('$translatePartialLoader', {
 		      urlTemplate: AppConstant.WEB_URL+'resources/translations/{lang}/{part}.json'
 		    });
    		    $translateProvider.useSanitizeValueStrategy('sanitize');
 			$translateProvider.preferredLanguage('en-IN');
-
 
  	 }])
  	 .factory('httpInjector', ['CommonRequestServ','AppConstant','UtilsServ', 'StorageService',function(CommonRequestServ, AppConstant, UtilsServ, StorageService) {  
@@ -67,33 +72,37 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
         return httpInjector;
     }])
  	 .run(['AuthServ','UtilsServ','$state','$rootScope','MenuService','$timeout','LoggerServ','growl' ,function(AuthServ, UtilsServ, $state, $rootScope, MenuService, $timeout, LoggerServ, growl){
+		
  	 	$rootScope.isLogin = false;
  	 	$rootScope.menus = MenuService.getParentMenu();
-	    $rootScope.childMenus = MenuService.getChildMenu();
-	    var userInfo = AuthServ.userDetails();
-	    $rootScope.userInfo = userInfo;
- 	 	if(!UtilsServ.isUndefinedOrNull(userInfo) && UtilsServ.isSessionExpire(userInfo.sessionExpiryTime)){
- 	 			$rootScope.isLogin = true;
- 	 			$state.go('dashboard');
- 	 			$rootScope.clock = "loading clock..."; // initialise the time variable
-			    var tick = function() {
-			        $rootScope.clock = Date.now() // get the current time
-			        $timeout(tick, 1000); // reset the timer
-			    }
-			    // Start the timer
-			    tick();
- 	 			return true;
- 	 	}else{
- 	 		AuthServ.logout().save({},function(response){
-                LoggerServ.log(response);
-                growl.success("User logout Successfully!!!");
-                $rootScope.isLogin = false;
-                AuthServ.setUserDetails(null);
-                $timeout(function() {
-			        $state.go('login');
-			    });
-            }); 	 		
- 	 		return true;
- 	 	} 	 	
+	    $rootScope.childMenus = MenuService.getChildMenu();    
+
+	    var runClock = function(){
+ 	 		$rootScope.clock = "loading clock..."; // initialise the time variable
+		    var tick = function() {
+		        $rootScope.clock = Date.now() // get the current time
+		        $timeout(tick, 1000); // reset the timer
+		    }
+		    // Start the timer
+		    tick();
+ 	 	};
+
+        if (AuthServ.isAuthenticated()) {
+        	$rootScope.isLogin = true;
+        	var userInfo = AuthServ.userDetails();
+	    	$rootScope.userInfo = userInfo;
+        	runClock();
+        	$timeout(function(){$state.go("dashboard")});
+            return ;
+        }else{
+        	$rootScope.isLogin = false;
+        	$rootScope.userInfo = {};
+        	$timeout(function(){$state.go("login")});
+        	return ;
+        }
+
+ 	 	
+
+ 	 		
 	}]);
  })();

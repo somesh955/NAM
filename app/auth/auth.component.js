@@ -3,7 +3,11 @@
 
     angular.module('myApp.authCtrl',[])
 
-    .controller('authController',['$scope', '$rootScope', 'AuthServ', '$state', 'UtilsServ', 'growl', 'LoggerServ', '$translatePartialLoader', '$translate', 'AppConstant' ,function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate, AppConstant){
+    .controller('authController',['$scope', '$rootScope', 'AuthServ', '$state', 'UtilsServ', 'growl', 'LoggerServ', '$translatePartialLoader', '$translate', 'AppConstant','$window' ,function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate, AppConstant, $window){
+        
+        $rootScope.preferredLanguage = function(lang){
+            $translate.use(lang+"-IN");
+        }; 
 
         $translatePartialLoader.addPart('login');
         $translate.refresh();
@@ -16,7 +20,7 @@
                     growl.success("User Login Successfully!!!");
                     $rootScope.isLogin = true;
                     AuthServ.setUserDetails(response.userDetails);
-                    $state.go('dashboard');
+                    $window.location.href = '/#/dashboard';
                 }else{
                     LoggerServ.log(response);
                     growl.error(response.responseHeader.errMsg);

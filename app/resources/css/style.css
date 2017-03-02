@@ -194,3 +194,10 @@ padding: 6px;
 .natinal-agricul-market table tbody tr td{
 color:#000;
 }
+#list-wrapper{
+    max-height: 400px;
+    overflow-y: scroll;
+    
+    margin-top: 20px;
+    border: solid 1px black;
+}

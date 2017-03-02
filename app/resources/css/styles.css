@@ -217,8 +217,6 @@ margin-top:-20px;
 
 
 body{
-   
-
   /*  background:#e6e6e6 ! important; */
     line-height: 1.9em;
     font-size: 14px;
@@ -412,11 +410,6 @@ img{
 .margin-top{
     margin-top: 20px;
 }
-.table-horizaontal{
-    width: 100%;
-    height:400;
-    overflow: auto;
-}
 
 .title{
    text-align: center;
@@ -473,12 +466,7 @@ background-color:#ba532a! important;
 .from-field{
     margin-top: 23px;
 }
-.table-vertical{
-   
-     height: 255px;
-    width: 100%;
-    overflow-y: scroll;
-}
+
 .panel-table{
     margin-top: 35px;
 }
@@ -638,6 +626,10 @@ img{
 }
 
 }
+thead tr th{
+    font-size: 15px;
+    font-family: initial;
+}
 
 /* bit listning css */
 
@@ -652,10 +644,6 @@ img{
 }
 .form-group {
 }
-.bit-search{
-    padding-top: 40px;
-    padding-left: 30px
-}
 .panel-wrap{
     background-color: #e8e8e8;
 }
@@ -666,16 +654,12 @@ img{
     padding: 10px;
 }
 
-@media screen and (max-width: 920px)
-{
-    .saller{
-        clear: both;
-    }
-    .bit-search {
-        padding-top: 15px !important;
-            margin-bottom: 25px !important;
-            padding-left: 40px !important;
-    }
+.span-bid-right{
+    float: left;
+    width: 100%;
+    display: block !important;
+    font-size: 12px;
+    color: black;
 }
 
 /* bit listning css ar  */
@@ -689,20 +673,17 @@ img{
 .mar-top-50{
     margin-top: 50px;
 }
-.bit-search{
-    padding-top: 40px;
-    padding-left: 30px
-}
 .panel-wrap{
  background-color: #ffffff;
 }
 .panel-wrap label{
  background-color: #ffffff;
  margin-top: 8px;
- margin-left: 15px;
- font-weight: lighter;
- color: #353535;
- font-size: 15px
+ font-weight: 600;
+ color: #545454;
+ font-size: 14px;
+ font-family: initial;
+    
 }
 .panel-info{
     border-color: transparent !important;
@@ -730,6 +711,7 @@ img{
 .nav-bid a{
     font-size: 17px;
 }
+
 .navbar-bid{
     border: none;
     border-radius: 0px;
@@ -738,7 +720,7 @@ img{
 .admin-name ul{
     list-style-type: none;
     margin-top: 27px;
-    text-align: right;
+    float: right;
 }
 .admin-name-clr{
     color: #ffffff;
@@ -780,6 +762,16 @@ img{
 	background:black !important;
 }
 /*panel table css*/
+.span-bid-left{
+    float: left;
+    width: 40%;
+    display: none;
+}
+.span-bid-right{
+    float: left;
+    width: 60%;
+    display: block !important;
+}
 .panel-heading {
     background:rgba(186,83,42,1) !important;
 }
@@ -803,10 +795,10 @@ img{
     padding: .4em;
     min-width: 40%;
     display: inline-block;
-    margin: -.4em 4em -.4em -.4em;
+    margin: -.4em 0 -.4em -.4em;
     font-size: 14px;
     color: #333;
-    margin-left: 5px;
+    margin-left: 0px;
     font-weight: bolder;
 }
 .table-striped tbody tr td span{
@@ -826,6 +818,11 @@ img{
 .admin-name-res{
     display: none;
 }
+.admin-name-res a{
+    color: white;
+}
+.btn-refresh{
+}
 /* bit listning media query*/
 @media screen and (max-width:1200px)
 {
@@ -833,16 +830,20 @@ img{
 		margin-left: 0px !important;
 	}
 }
+
+@media screen and (max-width: 992px)
+{
+	 /*-----my biding history media query----*/
+    .hist-search{
+        float: right ;
+    }
+    .mar-bot-10{
+        margin-bottom: 10px;
+    }
+}
+
 @media screen and (max-width: 920px)
 {
-     .saller{
-        clear: both;
-    }
-    .bit-search {
-        padding-top: 15px !important;
-            margin-bottom: 25px !important;
-            padding-left: 40px !important;
-    }
 	.admin-name ul{
 		margin-top: 5px !important;
 	}
@@ -870,6 +871,12 @@ img{
 	.table-striped td{
 		display: block;
 	}
+    .table-striped td:after{
+        display: table;
+        clear: both;
+        content: '';
+    }
+    
     .table-striped tbody tr td span{
 	display: inline-block;
     }
@@ -943,13 +950,27 @@ img{
      .admin-name-res ul li a{
        margin-left: 0px;
     }
+    .btn-refresh{
+        margin: 8px 0 18px 0;
+    }
+/*-----my biding history media query----*/
+    .hist-search{
+        float: right ;
+    }
+    .mar-bot-10{
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
 }
 
-@media screen and (max-width:380px){
+@media screen and (max-width:400px){
     .span-hd {
         font-size: 12px;
-        margin: -.4em 3em -.4em -.4em;
+        margin: -.4em 0px -.4em -.4em;
         
+    }
+    .span-bid-right{
+        font-size: 13px;
     }
 }
 
@@ -975,3 +996,42 @@ img{
 .bidW{
  width: 80px;
 }
+.theight {
+    display:block;
+    max-height: 198px;
+    overflow:auto;
+     width:100%;
+}
+
+.table-horizaontal{
+    width: 100%;
+    display:block;
+    overflow-x: auto;
+}
+
+.table-horizaontal-bid{
+    width: 100%;
+    display:block;
+    overflow-x: auto;
+}
+
+.margint{
+  margin-top: -17px;
+}
+
+/*----------my bid history css ---------*/
+.table-hist{
+    margin-top: 10px;
+}
+.date{
+    z-index: 0;
+}
+#list-wrapper{
+    max-height: 400px;
+    overflow-y: scroll;
+    
+    margin-top: 20px;
+    border: solid 1px black;
+}
+
+

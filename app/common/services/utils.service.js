@@ -63,6 +63,27 @@
 		    var bytes = CryptoJS.AES.decrypt(text, masterkey);
 		     return bytes.toString(CryptoJS.enc.Utf8);
 		};
+		var dateDiff = function(startDate , endDate){
+		    var objcurdate=new Date(startDate);
+		    var objedate =new Date(endDate);
+
+		    var curtime =objcurdate.getTime();
+		    var etime=objedate.getTime();
+		    var d=(etime-curtime);
+		    var sec_num=new Date(etime-curtime);
+
+		    seconds = d / 1000 ;
+		    minutes = seconds / 60;
+		    seconds %= 60;
+		    hours = minutes / 60;
+		    minutes %= 60;
+		    days = hours / 24;
+		    hours %= 24;
+
+		    var k=Math.floor(days)+":"+Math.floor(hours)+":"+Math.floor(minutes)+":"+Math.floor(seconds);	
+			return k;
+		};
+
 		return {
 			"responseType": responseType,
 			"isUndefinedOrNull" : isUndefinedOrNull,
@@ -72,7 +93,8 @@
 			"isSessionExpire" : isSessionExpire,
 			"getKeySign" : getKeySign,
 			"getEncryptedKS" : encrypt,
-			"getDecryptedKS" : decrypt
+			"getDecryptedKS" : decrypt,
+			"getDateDifference" : dateDiff
 		};
 	}]);
 })();

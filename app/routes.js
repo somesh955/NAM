@@ -10,17 +10,23 @@
             .state('home', {
                 url: '/',
                 templateUrl: './home/home.component.html',
-                controller: 'homeController'
+                controller: 'homeController'               
             })            
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: './dashboard/dashboard.component.html',
-                controller: 'dashboardController'
+                controller: 'dashboardController',
+                data: {
+                   authRequired: true
+                }
             })
 			.state('bidding', {
                 url: '/newBidList',
                 templateUrl: './bidding/bidding.component.html',
-                controller: 'biddingController'
+                controller: 'biddingController',
+                data: {
+                   authRequired: true
+                }
             }) 
 			
             .state('login', {
@@ -28,11 +34,13 @@
                 templateUrl: './auth/login.component.html',
                 controller: 'authController'    
             })
-            .state('logout', {
-                url: '/logout',
-                template: '',
-                abstract:true,
-                controller: 'authController'    
+            .state('myBidHistory', {
+                url: '/myBidHistory',
+                templateUrl: './mybiddinghistory/mybidinghistory.component.html',
+                controller: 'bidhistoryController',
+                data: {
+                   authRequired: true
+                }             
             });
             
     });

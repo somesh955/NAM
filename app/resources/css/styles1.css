@@ -31,7 +31,13 @@ body{
   src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
 }
 
-
+#list-wrapper{
+    max-height: 400px;
+    overflow-y: scroll;
+    
+    margin-top: 20px;
+    border: solid 1px black;
+}
 .wrapper{
     width: 1100px;
     margin: 0 auto;

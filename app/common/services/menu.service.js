@@ -4,7 +4,7 @@
 	angular.module('myApp.menuService',[])
 	.factory('MenuService', ['UtilsServ', function(UtilsServ){
 		var menu = [{	id: 0 , name:'Dashboard', label: 'Dashboard', href:"#/dashboard", class:"", isActive: false, isEnabled: true, isChild :  false , isAuthenticate : true},
-					{   id: 1 , name:'BidList', label: 'Bid Listing', href:"#/bidList", class:"", isActive: false, isEnabled: true, isChild : true   , isAuthenticate : true},
+					{   id: 1 , name:'BidList', label: 'Bid Listing', href:"#/dashboard", class:"", isActive: false, isEnabled: true, isChild : true   , isAuthenticate : true},
 					{	id: 2 , name:'MyBidHistory', label: 'My Biding History', href:"#/myBidHistory", class:"", isActive: false, isEnabled: true, isChild :  false  , isAuthenticate : true},
 					{   id: 3 , name:'BankDetails', label: 'Bank Details', href:"#/bankDetails", class:"", isActive: false, isEnabled: true, isChild :  false  , isAuthenticate : true},
 					{   id: 4 , name:'Reports', label: 'Reports', href:"#/reports", class:"", isActive: false, isEnabled: true, isChild :  false , isAuthenticate : true},

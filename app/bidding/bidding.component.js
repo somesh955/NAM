@@ -3,20 +3,23 @@
 
 	angular.module('myApp.biddingCtrl',[])
 
-	.controller('biddingController', ['$scope', '$rootScope','AuthServ','MasterServ','BiddingServ','UtilsServ','LoggerServ','growl','Spinner',function($scope,$rootScope, AuthServ, MasterServ, BiddingServ, UtilsServ, LoggerServ, growl, Spinner){        
+	.controller('biddingController', ['$scope', '$rootScope','AuthServ','MasterServ','BiddingServ','UtilsServ','LoggerServ','growl','Spinner','$uibModal', function($scope,$rootScope, AuthServ, MasterServ, BiddingServ, UtilsServ, LoggerServ, growl, Spinner, $uibModal){        
 
 	     $scope.onInit = function(){
-		 if((AuthServ.userDetails().userType) === "G"){		 
-	     	 $scope.stateList = AuthServ.userDetails().stateResponse;
-		 }else if((AuthServ.userDetails().userType) === "S"){
-			$scope.stateList = AuthServ.userDetails().stateResponse;
-			 $scope.state=AuthServ.userDetails().stateResponse[0].stateId;			 
-			 $scope.getApmcList($scope.state);
-		  }else{
-			 $scope.stateList = AuthServ.userDetails().stateResponse;
-			 $scope.state=AuthServ.userDetails().stateResponse[0].stateId;
-			 $scope.getApmcList($scope.state);
-		  }		 
+            $scope.bidList = [];
+            $scope.succesList = [];
+
+    		 if((AuthServ.userDetails().userType) === "G"){		 
+    	     	 $scope.stateList = AuthServ.userDetails().stateResponse;
+    		 }else if((AuthServ.userDetails().userType) === "S"){
+    			$scope.stateList = AuthServ.userDetails().stateResponse;
+    			 $scope.state=AuthServ.userDetails().stateResponse[0].stateId;			 
+    			 $scope.getApmcList($scope.state);
+    		  }else{
+    			 $scope.stateList = AuthServ.userDetails().stateResponse;
+    			 $scope.state=AuthServ.userDetails().stateResponse[0].stateId;
+    			 $scope.getApmcList($scope.state);
+    		  }		 
 	     };
 				 
 	     $scope.getApmcList = function(stateId){
@@ -60,13 +63,18 @@
         	});
 	     };
 		 
-			$scope.getbidGridList=function(bid){
-				Spinner.startSpin();
-				$rootScope.bid=bid;
-				BiddingServ.getBidList().save({"newBidRequest" :{"txnOprId": bid.apmc,"caId": bid.agent,"commodityId": bid.commodity}},function(response){
-				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+        $scope.dateDifference = function(endDate){
+            return UtilsServ.getDateDifference(new Date(), endDate);
+        } 
+
+	    $scope.getbidGridList=function(bid){
+			Spinner.startSpin();
+			$rootScope.bid=bid;
+			BiddingServ.getBidList().save({"newBidRequest" :bid},function(response){
+    			if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
                     $scope.bidingGrid = response.newBids;
+                    $scope.bidList = [];
                     Spinner.stopSpin();
         		}else{
                     LoggerServ.log(response);
@@ -76,14 +84,16 @@
         	});			
 		 };
 		 	 
-		 
-		 $scope.bidSubmission=function(bidValue){		
+	
+		 $scope.bidSubmission=function(bidList){	
 		 		Spinner.startSpin();	 
-				BiddingServ.bidSubmission().save({"bidSubmitRequest" :bidValue},function(response){
+				BiddingServ.bidSubmission().save({"bidSubmitRequest" :bidList},function(response){
 				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
                     $scope.bidingGrid = response.bidSubmitResponse;
 					$scope.getbidGridList($rootScope.bid);
+                    $scope.open('md','SuccessContent.html');
+                    $scope.succesList = response.bidSubmitResponse;
 					Spinner.stopSpin();
         		}else{
                     LoggerServ.log(response);
@@ -92,6 +102,55 @@
         		}        		
         	});			
 		 };
+
+        $scope.postMultiBid = function(bidObj){
+            if ($scope.bidList.indexOf(bidObj) !== -1) {
+                $scope.bidList.pop(bidObj);    
+            }
+            $scope.bidList.push(bidObj);
+        };
+
+        $scope.open = function (size, template) {
+
+            var modalInstance = $uibModal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: template,
+              controller: 'ModalInstanceCtrl',
+              size: size,
+              resolve: {
+                bidList: function () {
+                  return $scope.bidList;
+                },
+                succesList : function(){
+                    return $scope.succesList;
+                }
+              }              
+            });
+
+            modalInstance.result.then(function (bidList) {
+              LoggerServ.info(bidList);  
+              $scope.bidSubmission(bidList);
+            }, function () {
+              LoggerServ.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
 	     $scope.onInit();
+    }])
+    .controller('ModalInstanceCtrl',['$scope', '$uibModalInstance','bidList','succesList',function ($scope, $uibModalInstance,bidList, succesList) {
+          
+          $scope.bidList = [];
+          $scope.succesList = [];
+          
+          $scope.bidList = bidList;
+          $scope.succesList = succesList;
+
+          $scope.save = function () {
+            $uibModalInstance.close($scope.bidList);
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
     }]);
 })();

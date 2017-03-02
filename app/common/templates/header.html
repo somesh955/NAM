@@ -45,11 +45,11 @@
           <div class="header-right-list">
             <div class="form-group">
               <label for="sel1" style="color:#fff"> Language:</label>
-              <select onchange="location = this.options[this.selectedIndex].value;" class="form-control" style="height: 28px !important;padding: 3px 0px  !important;" id="sel1" default="English">
-                <option value="../home/index.html">English</option>
-                <option value="../home_hindi/index.html">Hindi</option>
-                <option value="../home_gujarati/index.html">Gujarati</option>
-                <option value="../home_telugu/index.html">Telugu</option>
+              <select ng-change="preferredLanguage(lang)"  ng-model="lang" class="form-control" style="height: 28px !important;padding: 3px 0px  !important;" id="sel1" default="English">
+                <option value="en" >English</option>
+                <option value="hi">Hindi</option>
+                <option value="gu" >Gujarati</option>
+                <option value="te">Telugu</option>
               </select>
             </div>
           </div>
@@ -70,16 +70,15 @@
                 </div>
                  <div class="col-xs-12 col-sm-12 col-md-9 clearfix bid-admin-right">
                      <div class="col-md-12 admin-name">
-                          <ul>
-              						   <!-- <li ng-click="logout()"> LOGOUT </li> -->
+                        <ul class="nav navbar-nav">
               						  <li>{{clock | date :  "dd/MM/y H:mm:ss"}}</li>
                              <li>Location</li>
-                             <li class="dropdown admin-name-res">
-                                <a class="dropdown-toggle admin-name-clr" data-toggle="dropdown" href="#" aria-expanded="false">{{userInfo.userName}}
+                             <li class="dropdown margint" init="isEnabled = false;">
+                                <a class="dropdown-toggle admin-name-clr" data-toggle="dropdown" href="#/dashboard" aria-expanded="false" ng-click="isEnabled = !isEnabled">{{userInfo.userName}}
                                 <span class="caret"></span></a>
-                                <ul class="dropdown-menu admin-submenu">
+                                <ul class="dropdown-menu" ng-show="isEnabled">
                                   <li><a href="#" data-toggle="modal"  data-target="#myModal"><i class="fa fa-cogs font-black" aria-hidden="true"></i>Preference</a></li>
-                                    <li><a href="#/logout"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
+                                    <li ng-controller="authController"><a href="javascript:void(0)" ng-click="logout()"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
                                 </ul>
                              </li>
     

@@ -1,12 +1,16 @@
 (function(){
 	'use-strict';
 	angular.module('myApp.authService',[])
-	.factory('AuthServ',['$resource', 'AppConstant', 'StorageService',function($resource, AppConstant, StorageService){
+	.factory('AuthServ',['$resource', 'AppConstant', 'StorageService','UtilsServ',function($resource, AppConstant, StorageService,UtilsServ){
 		var userInfo = {};
 		var UserDetails = function(){
 			userInfo =StorageService.getUserDetails('userInfo');
 			return userInfo;
 		};
+		var authorize = function(){
+			userInfo =StorageService.getUserDetails('userInfo');
+			return (!UtilsServ.isUndefinedOrNull(userInfo) && UtilsServ.isSessionExpire(userInfo.sessionExpiryTime))
+		}
 		var SaveUserDetails = function(user){
 			StorageService.setUserDetails('userInfo', user);
 			userInfo = user;
@@ -22,7 +26,8 @@
 			'userDetails': UserDetails,
 			'setUserDetails' : SaveUserDetails,
 			'login': Login,
-			'logout': Logout
+			'logout': Logout,
+			'isAuthenticated' : authorize
 		};
 	}]);
 })();
