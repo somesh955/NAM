@@ -73,36 +73,32 @@ angular.module('myApp', ['ngResource','pascalprecht.translate','ngSanitize','ui.
     }])
  	 .run(['AuthServ','UtilsServ','$state','$rootScope','MenuService','$timeout','LoggerServ','growl' ,function(AuthServ, UtilsServ, $state, $rootScope, MenuService, $timeout, LoggerServ, growl){
 		
- 	 	$rootScope.isLogin = false;
- 	 	$rootScope.menus = MenuService.getParentMenu();
-	    $rootScope.childMenus = MenuService.getChildMenu();    
-
-	    var runClock = function(){
- 	 		$rootScope.clock = "loading clock..."; // initialise the time variable
-		    var tick = function() {
-		        $rootScope.clock = Date.now() // get the current time
-		        $timeout(tick, 1000); // reset the timer
-		    }
-		    // Start the timer
-		    tick();
- 	 	};
-
-        if (AuthServ.isAuthenticated()) {
-        	$rootScope.isLogin = true;
-        	var userInfo = AuthServ.userDetails();
-	    	$rootScope.userInfo = userInfo;
-        	runClock();
-        	$timeout(function(){$state.go("dashboard")});
-            return ;
-        }else{
-        	$rootScope.isLogin = false;
-        	$rootScope.userInfo = {};
-        	$timeout(function(){$state.go("login")});
-        	return ;
-        }
-
- 	 	
-
- 	 		
+		(function(){
+			$rootScope.isLogin = false;
+			$rootScope.menus = MenuService.getParentMenu();
+	    	$rootScope.childMenus = MenuService.getChildMenu();
+	    	var runClock = function(){
+	 	 		$rootScope.clock = "loading clock..."; // initialise the time variable
+			    var tick = function() {
+			        $rootScope.clock = Date.now() // get the current time
+			        $timeout(tick, 1000); // reset the timer
+			    }
+			    // Start the timer
+			    tick();
+	 	 	};
+	 	 	if (AuthServ.isAuthenticated()) {
+	        	$rootScope.isLogin = true;
+	        	var userInfo = AuthServ.userDetails();
+		    	$rootScope.userInfo = userInfo;
+	        	runClock();
+	        	$timeout(function(){$state.go("dashboard")});
+	            return ;
+	        }else{
+	        	$rootScope.isLogin = false;
+	        	$rootScope.userInfo = null;
+	        	$timeout(function(){$state.go("login")});
+	        	return ;
+	        }		    
+		})();
 	}]);
  })();

@@ -26,7 +26,7 @@
                  <div class="row form-group">
                    <div class="col-md-4 col-sm-4 col-xs-12 "><label>APMC </label></div>
                    <div class="col-md-7 col-sm-8 col-xs-12 ">
-                    <select class="form-control" ng-model="bid.txnOprId" ng-change="getList(bid.apmc)" data-ng-options="apmc.apmcId as apmc.apmcName for apmc in ammcList">
+                    <select class="form-control" ng-model="bid.txnOprId" ng-change="getList(bid.txnOprId)" data-ng-options="apmc.apmcId as apmc.apmcName for apmc in ammcList">
                      <option value="">All</option>
                    </select>
                  </div>
@@ -117,7 +117,7 @@
           <div class="col-xs-12 col-sm-12 " id="">
             <div class="table-horizaontal table-horizaontal-bid table-vertical">
               <div id="list-wrapper">
-                <div class="list" infinite-scroll='getbidGridList(bid)' 
+                <div class="list" infinite-scroll='' 
                 infinite-scroll-distance='2' 
                 infinite-scroll-container="'#list-wrapper'">
                 <div class="list-table" >

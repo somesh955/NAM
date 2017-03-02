@@ -19,8 +19,9 @@
                     LoggerServ.log(response);
                     growl.success("User Login Successfully!!!");
                     $rootScope.isLogin = true;
+                    $rootScope.userInfo = response.userDetails;
                     AuthServ.setUserDetails(response.userDetails);
-                    $window.location.href = '/#/dashboard';
+                    $window.location.href = '/';
                 }else{
                     LoggerServ.log(response);
                     growl.error(response.responseHeader.errMsg);
@@ -34,6 +35,7 @@
                     LoggerServ.log(response);
                     growl.success("User logout Successfully!!!");
                     $rootScope.isLogin = false;
+                    $rootScope.userInfo = null;
                     AuthServ.setUserDetails(null);
                     $state.go('home');
                 }else{
