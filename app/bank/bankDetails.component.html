@@ -1,0 +1,115 @@
+
+<section class="content-section">
+	<div class="container" >
+		<div class="container">
+          <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="row panel-wrap">
+              <div class="col-sm-12 col-xs-12 mar-top-15 col-md-8 col-md-offset-2">
+                <div class="row">   
+                  <div class="col-md-12 col-sm-12 col-xs-12 ">            
+                    <span style="text-align: center;"><h2> Your Account Must be RTGS/NEFT enabled. </h2></span>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12"
+                   ng-if="bankDetails.status=='N'">
+                    <div><center>
+                     <b> Select : </b><button class="btn btn-success" ng-click="setBankStatus('A')">Agree</button>
+                               <button class="btn btn-danger" ng-click="setBankStatus('D')">Disagree</button>
+                       </center>
+                    </div>
+                  </div>
+                </div><hr style="border-color:#BA532A">
+                </div>
+                
+             <div class="col-sm-12 col-xs-12 mar-top-15 col-md-10 col-md-offset-1">
+                <div class="row"> 
+                   <div class="col-md-6 col-sm-6 col-xs-12 ">
+                    <div class="row form-group">
+                      <div class="col-md-5 col-sm-4 col-xs-12 "><label>Agent/Trader Name </label></div>
+                      <div class="col-md-7 col-sm-8 col-xs-12 ">
+                        <input type="text" ng-model="bankDetails.fullName" class="form-control" readonly="true" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row form-group">
+                      <div class="col-md-5 col-sm-4 col-xs-12 "><label>Bank Acc No.  </label></div>
+                      <div class="col-md-7 col-sm-8 col-xs-12 ">
+                        <input type="text" ng-model="bankDetails.bankAcNo" class="form-control" readonly="true"/>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                <div class="row"> 
+                  <div class="col-md-6 col-sm-6 col-xs-12 saller">
+                    <div class="row form-group">
+                      <div class="col-md-5 col-sm-4 col-xs-12 saller "><label>Company Name   </label></div>
+                      <div class="col-md-7 col-sm-8 col-xs-12 ">
+                        <input type="text" ng-model="bankDetails.bankName" class="form-control" readonly="true"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-12 ">
+                   <div class="row form-group">
+                      <div class="col-md-5 col-sm-4 col-xs-12 "><label>IFSC Code </label> </div>
+                      <div class="col-md-7 col-sm-8 col-xs-12 ">
+                       <input type="text" ng-model="bankDetails.ifscCode" class="form-control" readonly="true"/>  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+               <div class="row"> 
+                    <div class="col-md-6 col-sm-6 col-xs-12 ">
+                      <div class="row form-group">
+                        <div class="col-md-5 col-sm-4 col-xs-12 "><label>Contact Number</label></div>
+                        <div class="col-md-7 col-sm-8 col-xs-12 ">
+                          <input type="text" ng-model="bankDetails.contactNo" class="form-control" readonly="true" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="row form-group">
+                        <div class="col-md-5 col-sm-4 col-xs-12 "><label>Adhar Card No.</label></div>
+                        <div class="col-md-7 col-sm-8 col-xs-12 ">
+                          <input type="text" ng-model="bankDetails.aadhaarCardNo" class="form-control" readonly="true"/>
+                        </div>
+                      </div>
+                    </div>
+               </div>
+
+               <div class="row"> 
+                  <div class="col-md-6 col-sm-6 col-xs-12 saller">
+                    <div class="row form-group">
+                      <div class="col-md-5 col-sm-4 col-xs-12 saller "><label>Email ID</label></div>
+                      <div class="col-md-7 col-sm-8 col-xs-12 ">
+                        <input type="text" ng-model="bankDetails.emailId" class="form-control" readonly="true"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-12 ">
+                   <div class="row form-group">
+                    <div class="col-md-5 col-sm-4 col-xs-12 "><label>Pan No.</label> </div>
+                    <div class="col-md-7 col-sm-8 col-xs-12 ">
+                     <input type="text" ng-model="bankDetails.panCardNo" class="form-control" readonly="true"/>  
+                   </div>
+                 </div>
+                </div>
+              </div>
+              <div class="row"> 
+                 <div class="col-md-6 col-sm-6 col-xs-12 ">
+                     <div class="row form-group">
+                      <div class="col-md-5 col-sm-4 col-xs-12 "><label>Bank Name</label> </div>
+                      <div class="col-md-7 col-sm-8 col-xs-12 ">
+                       <input type="text" ng-model="bankDetails.bankName" class="form-control" readonly="true"/>  
+                     </div>
+                   </div>
+                 </div>                 
+            </div>
+          </div>
+       </div>
+     </div>
+  </div>
+ </div>
+</section>
+

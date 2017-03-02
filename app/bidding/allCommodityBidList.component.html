@@ -1,0 +1,69 @@
+<section class="content-section">
+  <div class="container" >  
+        <div class="row">
+            <div class="col-xs-10 col-sm-6 col-md-4  panel-wrap com-select">
+               <div class="col-xs-12  col-sm-12 col-md-12 col-lg-12 mar-top-15">
+                            <div class="row form-group">
+                                <div class=" col-xs-3 col-sm-3 col-md-3"> <label>Commodity </label></div>
+                                 <div class="col-xs-7  col-sm-7 col-md-7 ">
+                                              <select class="form-control" ng-model="selectedCommodity" ng-options="commodity.productId as commodity.productName for commodity in allCommodityBidList">
+                                                 <option value="">Select</option>
+                                             </select>
+
+                                               
+                                </div>
+                                <div class="col-xs-7 col-sm-2 col-md-2">
+                                     <input type="button" value="Add" ng-click="addCommodity(selectedCommodity)" class="btn btn-primary hist-search"  />           
+                                </div>
+                       </div>
+            </div>
+            </div>
+                </div>
+        
+    
+        <div class="row text-center" >
+            <div class="col-md-8 panel-wrap-grid com-add-grid">
+        <div class="panel panel-default">
+          <div class="panel-heading ">
+            <h3 class="panel-title panel-bid">My Preferred Commodities</h3>
+          </div>
+          <div class="panel-body panel-cont">
+            
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="row ">
+                  <div class="bid-listing bid-listing-cont" id="">
+                  <div class="col-xs-12 col-sm-12 " id="">
+                        <div class="table-horizaontal table-vertical">
+                            <table class="table table-striped table-bordered table-hover table-hist">
+                              <thead class="thin-border-bottom">
+                                <tr>
+                                  <th width="80%">Commodity</th>
+                                  <th width="20%">Delete</th>
+                                </tr>
+                                  
+                              </thead>
+
+                              <tbody>
+                                <tr ng-repeat="commodity in allPreferredCommodityGrid">
+                                     <td><span class="span-hd span-bid-left">Commodity </span><span class="span-bid-right">{{commodity.commodityName}}</span></td>
+                                      <td><span class="span-hd span-bid-left">Delete </span><span  class="span-bid-right"><button  ng-click="deleteCommodity(commodity.commodityId)" class="btn btn-danger" type="button" >Delete</button></span></td>
+                                </tr>
+                                                                  
+
+                              </tbody>
+                            </table>
+                        
+                      </div>
+                    </div><!-- /.span -->
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div> 
+    </div>    
+ 
+    </div>  
+    
+</section>
+
+  

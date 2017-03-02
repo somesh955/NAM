@@ -1,67 +1,38 @@
-<!--   <nav class="menu-section ng-scope">
-  	<div class="container" style="position: fixed;width: 100%;height: 50px;z-index: 99;">
-    <div class="row">
-     <nav class="navbar navbar-default navbar-static-top gcolor" role="navigation" style="padding:0; margin:0;height: 50px;">
-      <div class="navbar navbar-default navbar-static-top">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-          </div>
-          <div class="navbar-collapse collapse ">
-            <ul class="nav navbar-nav">
-              <li ng-repeat="menu in menus" class="dropdown" ng-if="menu.isEnabled && menu.isAuthenticate === isLogin">
-                  <a href="{{menu.href}}" data-toggle="dropdown}" class="dropdown-toggle" >{{menu.label}} <b ng-if="menu.isChild" class="caret"></b></a>
-                  <ul class="dropdown-menu" ng-if="menu.isChild">
-                    <li ng-repeat="childmenu in childMenus " ng-if="childmenu.parent_id == menu.id && childmenu.isEnabled && menu.isAuthenticate === isLogin"><a href="{{childmenu.href}}">{{childmenu.label}}</a></li>
-                  </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-     </nav>
-  </div>
- </div>
-</nav> -->
-
- <nav class="menu-section ng-scope">
-<div class=" row nav-bid">
-         <div class="container">
-			 <div class="navbar-header navheader-bid">	
-                 <li class="dropdown admin-name-res">
-                                <a class="dropdown-toggle admin-name-clr" data-toggle="dropdown" href="#" aria-expanded="false">Admin Name
-                                <span class="caret"></span></a>
-                                <ul class="dropdown-menu admin-submenu">
-                                  <li><a href="#" data-toggle="modal"  data-target="#myModal"><i class="fa fa-cogs font-black" aria-hidden="true"></i>Preference</a></li>
-                                    <li><a href="#"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
-                                    <li><a href="#"><i class="fa fa-map-marker font-black" aria-hidden="true"></i>Nagpur,MH</a></li>
-                                    <li><a href="#"><i class="fa fa-clock-o font-black" aria-hidden="true"></i>Time</a></li>
-                                </ul>
-                             </li>
-                <button type="button" class="navbar-toggle navtoggle-bid" data-toggle="collapse" data-target="#navbar-collapse-bid">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-             </div>
-              <nav class="navbar navbar-bid" id="navbar-collapse-bid">
-                <div class="row">
-				<ul class="nav navbar-nav navbar-nav-bid">
-					<li ng-repeat="menu in menus" class="dropdown" ng-if="menu.isEnabled && menu.isAuthenticate === isLogin">
-								  <a href="{{menu.href}}" data-toggle="dropdown}" class="dropdown-toggle" >{{menu.label}} <b ng-if="menu.isChild" class="caret"></b></a>
-					  <ul class="dropdown-menu" ng-if="menu.isChild">
-						<li ng-repeat="childmenu in childMenus " ng-if="childmenu.parent_id == menu.id && childmenu.isEnabled && menu.isAuthenticate === isLogin"><a href="{{childmenu.href}}">{{childmenu.label}}</a></li>
-					  </ul>
-					</li>
-				</ul>
-  </div>
-             </nav>
-        </div>  
+<div class="menu-section ng-scope">
+  <div class=" row nav-bid">
+   <div class="container">
+    <div class="navbar-header navheader-bid"> 
+     <li class="dropdown admin-name-res">
+      <a class="dropdown-toggle admin-name-clr" data-toggle="dropdown" href="#" aria-expanded="false">Admin Name
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu admin-submenu">
+          <li><a href="#" data-toggle="modal"  data-target="#myModal"><i class="fa fa-cogs font-black" aria-hidden="true"></i>Preference</a></li>
+          <li><a href="#"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
+          <li><a href="#"><i class="fa fa-map-marker font-black" aria-hidden="true"></i>Nagpur,MH</a></li>
+          <li><a href="#"><i class="fa fa-clock-o font-black" aria-hidden="true"></i>Time</a></li>
+        </ul>
+      </li>
+      <button type="button" class="navbar-toggle navtoggle-bid" data-toggle="collapse" data-target="#navbar-collapse-bid">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-	</nav>
-	
-	
+    <nav class="navbar navbar-bid" id="navbar-collapse-bid">
+      <div class="row">
+        <ul class="nav navbar-nav navbar-nav-bid">        
+         <li ng-repeat="menu in menus" class="dropdown" ng-if="menu.isEnabled && menu.isAuthenticate === isLogin">
+          <a href="{{menu.href}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{menu.label}} <span ng-if="menu.isChild" class="caret"></span></a>
+          <ul class="dropdown-menu" ng-if="menu.isChild">
+            <li ng-repeat="childmenu in childMenus " ng-if="childmenu.parent_id == menu.id && childmenu.isEnabled && menu.isAuthenticate === isLogin"><a href="{{childmenu.href}}">{{childmenu.label}}</a></li>
+            <li role="separator" class="divider"></li>
+          </ul>
+        </li>
+        <li role="separator" class="divider"></li>
+      </ul>
+    </div>
+  </nav>
+</div>  
+</div>
+</div>

@@ -3,7 +3,7 @@
 
 	angular.module('myApp.biddingCtrl',[])
 
-	.controller('biddingController', ['$scope', '$rootScope','AuthServ','MasterServ','BiddingServ','UtilsServ','LoggerServ','growl','Spinner','$uibModal', function($scope,$rootScope, AuthServ, MasterServ, BiddingServ, UtilsServ, LoggerServ, growl, Spinner, $uibModal){        
+	.controller('biddingController', ['$scope', '$rootScope','AuthServ','MasterServ','BiddingServ','UtilsServ','LoggerServ','growl','Spinner','$uibModal','AppConstant',function($scope,$rootScope, AuthServ, MasterServ, BiddingServ, UtilsServ, LoggerServ, growl, Spinner, $uibModal, AppConstant){        
 
 	     $scope.onInit = function(){
             $scope.bidList = [];
@@ -71,6 +71,7 @@
 	    $scope.getbidGridList=function(bid){
 			Spinner.startSpin();
 			$rootScope.bid=bid;
+            $scope.bidingGrid = [];
 			BiddingServ.getBidList().save({"newBidRequest" :bid},function(response){
     			if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
@@ -112,6 +113,9 @@
             }            
         };
 
+        $scope.dateConverter = function(date, format){
+            return UtilsServ.dateFormat(new Date(date),AppConstant.CLIENT_DATEFORMAT);
+        }
         $scope.open = function (size, template) {
             if($scope.bidList.length == 0){
                 growl.warning("Please enter atleast one bid before submit");
