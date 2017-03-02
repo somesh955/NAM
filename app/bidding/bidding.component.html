@@ -103,8 +103,9 @@
         <div class="panel-heading ">
           <h3 class="panel-title panel-bid">My Preferred Bids - {{bidingGrid.length}} </h3>
         </div>
-        <div class=" row panel-submit">
+        <div class=" row panel-submit" init="hidden=false">
           <input type="button" value="Submit All" class="btn btn-primary" ng-click="open('md','myModalContent.html')">
+          <input type="button" value="Show hidden column" class="btn btn-primary" ng-click="hidden=true">
         </div>
 		 <!--  <div class=" row panel-submit">
 			  <input ng-click="confirmBidSubmission(bidingGrid)" type="button" value="Submit All" class="btn btn-primary">
@@ -140,10 +141,10 @@
                         <th>seller</th>
                         <th>Village</th>
                         <th>Test Result</th>
-                                <!-- <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Re-Bid<br>Allowed</th>
-                                <th>Extended Date</th> -->
+                        <th ng-show="hidden">Start Date</th>
+                        <th ng-show="hidden">End Date</th>
+                        <th ng-show="hidden">Re-Bid<br>Allowed</th>
+                        <th ng-show="hidden">Extended Date</th>
                               </tr>                                  
                             </thead>
 
@@ -169,7 +170,7 @@
                                 
                                 <td><span class="span-hd span-bid-left">Time Remaing(HH:MI)</span> <span class="span-bid-right">{{dateDifference(bidValue.endDate)}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">New Bid </span><span  class="span-bid-right"><input type="text" ng-model="bidValue.bidRate" class="form-control bidW"  ng-blur="postMultiBid(bidValue)"/> </span> </td>
+                                <td><span class="span-hd span-bid-left">New Bid </span><span  class="span-bid-right"><input type="number" min="0"ng-model="bidValue.bidRate" class="form-control bidW"  ng-blur="postMultiBid(bidValue)"/> </span> </td>
                                 
                                 <td><span class="span-hd span-bid-left">Bid </span><span  class="span-bid-right"><button class="btn btn-deafult" type="button" ng-click="bidSubmission(bidValue)" >Bid</button></span></td>
                                 
@@ -181,14 +182,13 @@
                                 
                                 <td><span class="span-hd span-bid-left">Test Result </span><span class="span-bid-right"><button class="btn btn-deafult" type="button">Show</button></span></td>
                                 
-                               <!--  <td><span class="span-hd span-bid-left">Start Date </span><span class="span-bid-right">{{bidValue.startDate}}</span></td>
+                                <td ng-show="hidden"><span class="span-hd span-bid-left">Start Date </span><span class="span-bid-right">{{bidValue.startDate}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">End Date </span><span class="span-bid-right">{{bidValue.endDate}}</span></td>
+                                <td ng-show="hidden"><span class="span-hd span-bid-left">End Date </span><span class="span-bid-right">{{bidValue.endDate | date:"DD/MM/YYYY HH:MM"}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">Re-Bd Allowed </span><span class="span-bid-right">{{bidValue.submitMultiBid}}</span></td>
+                                <td ng-show="hidden"><span class="span-hd span-bid-left">Re-Bd Allowed </span><span class="span-bid-right">{{bidValue.submitMultiBid}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">Extended Date </span><span class="span-bid-right">{{bidValue.extendedEndTime}}</span></td>
-                              -->
+                                <td ng-show="hidden"><span class="span-hd span-bid-left">Extended Date </span><span class="span-bid-right">{{bidValue.extendedEndTime}}</span></td>
                             </tr>
                           </tbody>
                         </table>

@@ -90,10 +90,10 @@
 				BiddingServ.bidSubmission().save({"bidSubmitRequest" :bidList},function(response){
 				if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
+                    $scope.succesList = response.bidSubmitResponse;
                     $scope.bidingGrid = response.bidSubmitResponse;
 					$scope.getbidGridList($rootScope.bid);
                     $scope.open('md','SuccessContent.html');
-                    $scope.succesList = response.bidSubmitResponse;
 					Spinner.stopSpin();
         		}else{
                     LoggerServ.log(response);
@@ -104,14 +104,19 @@
 		 };
 
         $scope.postMultiBid = function(bidObj){
-            if ($scope.bidList.indexOf(bidObj) !== -1) {
+            if ($scope.bidList.indexOf(bidObj) !== -1 ) {
                 $scope.bidList.pop(bidObj);    
-            }
-            $scope.bidList.push(bidObj);
+            }else if(!UtilsServ.isUndefinedOrNull(bidObj.bidRate)){
+                $scope.bidList.push(bidObj);
+            }            
         };
 
         $scope.open = function (size, template) {
-
+            if($scope.bidList.length == 0){
+                growl.warning("Please enter atleast one bid before submit");
+                return false;
+            }
+            
             var modalInstance = $uibModal.open({
               animation: $scope.animationsEnabled,
               templateUrl: template,
