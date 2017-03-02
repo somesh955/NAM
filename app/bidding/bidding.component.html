@@ -190,6 +190,7 @@
                                 
                                 <td ng-show="hidden"><span class="span-hd span-bid-left">Extended Date </span><span class="span-bid-right">{{bidValue.extendedEndTime}}</span></td>
                             </tr>
+                            <tr ng-if="bidingGrid.length == 0"><td colspan="{{(hidden) ?  22 : 19}}"><center>No Record Found !!!</center></td></tr>
                           </tbody>
                         </table>
                       </div>

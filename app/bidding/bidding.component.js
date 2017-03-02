@@ -8,6 +8,7 @@
 	     $scope.onInit = function(){
             $scope.bidList = [];
             $scope.succesList = [];
+            $scope.bidingGrid = [];
 
     		 if((AuthServ.userDetails().userType) === "G"){		 
     	     	 $scope.stateList = AuthServ.userDetails().stateResponse;
@@ -116,7 +117,7 @@
                 growl.warning("Please enter atleast one bid before submit");
                 return false;
             }
-            
+
             var modalInstance = $uibModal.open({
               animation: $scope.animationsEnabled,
               templateUrl: template,
