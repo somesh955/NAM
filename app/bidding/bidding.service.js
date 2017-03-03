@@ -36,6 +36,12 @@
 		var BidTableColumnList = function(){
 			return $resource(AppConstant.WEB_URL+'/resources/data/bid-list-grid.json');;
 		};
+		var getAllPreferredCommodity = function(){
+			return $resource(AppConstant.APP_URL+'/dashboard/getAllPreferredCommodity');				
+		};
+		var removePreferredCommodity = function(){
+			return $resource(AppConstant.APP_URL+'/dashboard/removePreferredCommodity');				
+		};
 
 		return {
 			"getBidList": BidList,
@@ -43,6 +49,8 @@
 			"getAllCommodityBid" : AllCommodityBid,
 			"setPreferredCommodity" : PreferredCommodity,
 			"getBidTableColumnList" : BidTableColumnList,
+			"getAllPreferredCommodity" : getAllPreferredCommodity,
+			"removePreferredCommodity" :removePreferredCommodity,
 		};
 
 	});

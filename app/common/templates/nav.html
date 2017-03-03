@@ -3,13 +3,13 @@
    <div class="container">
     <div class="navbar-header navheader-bid"> 
      <li class="dropdown admin-name-res">
-      <a class="dropdown-toggle admin-name-clr" data-toggle="dropdown" href="#" aria-expanded="false">Admin Name
+      <a class="dropdown-toggle admin-name-clr" data-toggle="dropdown" href="javascript:void(0)" aria-expanded="false">{{userInfo.userName}}
         <span class="caret"></span></a>
         <ul class="dropdown-menu admin-submenu">
-          <li><a href="#" data-toggle="modal"  data-target="#myModal"><i class="fa fa-cogs font-black" aria-hidden="true"></i>Preference</a></li>
-          <li><a href="#"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
-          <li><a href="#"><i class="fa fa-map-marker font-black" aria-hidden="true"></i>Nagpur,MH</a></li>
-          <li><a href="#"><i class="fa fa-clock-o font-black" aria-hidden="true"></i>Time</a></li>
+          <li><a href="javascript:void(0);" data-toggle="modal"  data-target="#myModal"><i class="fa fa-cogs font-black" aria-hidden="true"></i>Preference</a></li>
+          <li ng-controller="authController"><a href="javascript:void(0)" ng-click="logout()"><i class="fa fa-sign-out font-black" aria-hidden="true"></i>Logout</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-map-marker font-black" aria-hidden="true"></i>Nagpur,MH</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-clock-o font-black" aria-hidden="true"></i>{{clock | date :  "dd/MM/y H:mm:ss"}}</a></li>
         </ul>
       </li>
       <button type="button" class="navbar-toggle navtoggle-bid" data-toggle="collapse" data-target="#navbar-collapse-bid">

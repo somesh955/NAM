@@ -80,9 +80,25 @@
 		    days = hours / 24;
 		    hours %= 24;
 
-		    var k=Math.floor(days)+":"+Math.floor(hours)+":"+Math.floor(minutes)+":"+Math.floor(seconds);	
+		    var k=Math.floor(days)+":"+Math.floor(hours)+":"+Math.floor(minutes);	
 			return k;
 		};
+
+		var getCurrentDate=function(){
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+
+				var yyyy = today.getFullYear();
+				if(dd<10){
+				    dd='0'+dd;
+				} 
+				if(mm<10){
+				    mm='0'+mm;
+				} 
+				var today = dd+'/'+mm+'/'+yyyy;
+				return today;	
+		};										
 
 		return {
 			"responseType": responseType,
@@ -94,7 +110,8 @@
 			"getKeySign" : getKeySign,
 			"getEncryptedKS" : encrypt,
 			"getDecryptedKS" : decrypt,
-			"getDateDifference" : dateDiff
+			"getDateDifference" : dateDiff,
+			"getCurrentDate" :getCurrentDate
 		};
 	}]);
 })();

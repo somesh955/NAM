@@ -44,7 +44,7 @@
                               </thead>
 
                               <tbody>
-                                <tr ng-repeat="commodity in allPreferredCommodityGrid">
+                                <tr style="border: none" ng-repeat="commodity in allPreferredCommodityGrid">
                                      <td><span class="span-hd span-bid-left">Commodity </span><span class="span-bid-right">{{commodity.commodityName}}</span></td>
                                       <td><span class="span-hd span-bid-left">Delete </span><span  class="span-bid-right"><button  ng-click="deleteCommodity(commodity.commodityId)" class="btn btn-danger" type="button" >Delete</button></span></td>
                                 </tr>

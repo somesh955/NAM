@@ -1,0 +1,74 @@
+<script>
+  $(document).ready(
+      
+        /* This is the function that will get executed after the DOM is fully loaded */
+        function () {
+          $( "#datepicker" ).datepicker({
+         dateFormat : 'dd/mm/yy',
+        changeMonth: true,//this option for allowing user to select month
+              changeYear: true //this option for allowing user to select from year range
+        });
+          
+          $( "#datepicker1" ).datepicker({
+            dateFormat : 'dd/mm/yy',
+              changeMonth: true,//this option for allowing user to select month
+              changeYear: true //this option for allowing user to select from year range
+            });
+        }
+
+      );
+      
+</script>
+
+<section class="content-section">
+  <div class="container" >  
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8  panel-wrap com-select">
+               <div class="col-xs-12  col-sm-12  mar-top-15">
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                                <div class=" col-xs-12 col-sm-4 col-md-3"> <label>State </label></div>
+                                <div class="col-xs-12  col-sm-8 col-md-9 ">
+                                   <select class="form-control" ng-model="reportForm.state" ng-change="getApmcList(reportForm.state)" ng-options="state.stateId as state.stateName for state in stateList">
+                                     <option value="">Select</option>
+                                   </select>
+
+                                               
+                                </div>
+                       </div>
+                   <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                                <div class=" col-xs-12 col-sm-4 col-md-3"> <label>Apmc</label></div>
+                                <div class="col-xs-12  col-sm-8 col-md-9 ">
+                                    <select class="form-control" ng-model="reportForm.apmc" data-ng-options="apmc.apmcId as apmc.apmcName for apmc in ammcList">
+                                       <option value="">All</option>
+                                     </select>
+                                               
+                                </div>
+                       </div>
+                   <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                                <div class=" col-xs-12 col-sm-4 col-md-3 padd-fdate"> <label>From Date </label></div>
+                                <div class="col-xs-12 col-sm-8 col-md-9 ">
+                                    <input ng-model="reportForm.fromDate" id="datepicker"  placeholder="Select From Date" readonly="readonly" class="form-control" type="text">                                                 
+                                </div>
+                       </div>
+                   <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                                <div class=" col-xs-12 col-sm-4 col-md-3 padd-fdate"> <label>To Date </label></div>
+                                <div class="col-xs-12  col-sm-8 col-md-9 ">
+                                    <input ng-model="reportForm.toDate" id="datepicker1" readonly="readonly" placeholder="Select To Date" class="form-control" type="text">
+                                </div>
+                    </div>
+            </div>
+               <div class="col-xs-12 col-xs-12  col-sm-12 mar-top-8">
+                    <div class=" col-xs-6 col-sm-6 text-right">
+                        <input type="button" value="Trader Wise Bid Opening Winner List" class="btn btn-primary" ng-click="getReportsByTrader(reportForm)"  />  
+                   </div>
+                    <div class=" col-xs-6 col-sm-6 text-left">
+                        <input type="button" value="Trader Lot Details" class="btn btn-primary pull-left"  ng-click="getReportsTraderLot(reportForm)" />  
+                   </div>
+               </div>
+            </div>
+                </div>
+    </div>  
+    
+</section>
+
+  

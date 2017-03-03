@@ -1026,12 +1026,29 @@ thead tr th{
 .date{
     z-index: 0;
 }
-#list-wrapper{
+/*#list-wrapper{
     max-height: 400px;
     overflow-y: scroll;
     
     margin-top: 20px;
     border: solid 1px black;
+}*/
+
+
+/*commudity add*/
+.com-add-grid{
+    float: none;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.com-select{
+    margin: 0 auto;
+    float: none;
 }
 
+/*Report css*/
+.padd-fdate{
+  padding-right: 0px !important;
+}
 

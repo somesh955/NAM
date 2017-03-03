@@ -16,6 +16,8 @@
   <link rel="stylesheet" type="text/css" href="resources/css/angular-growl.css">
   <link rel="stylesheet" type="text/css" href="resources/css/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="resources/css/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/jquery-ui.css">
+  
   <script type="text/javascript">
   function feedbackPopUp() {
     var vars = window.location.search;
@@ -37,7 +39,8 @@
         <div ui-view></div>
         <div growl></div>
     </div>
-    <footer class="" ng-include="'common/templates/footer.html'"> </footer>
+
+    <footer ng-if="isLogin == false" class="" ng-include="'common/templates/footer.html'"> </footer>
 
     <script type="text/javascript" src="resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="resources/js/theme.js"></script>
@@ -63,7 +66,8 @@
     <script type="text/javascript" src="resources/js/crypto-js.min.js"></script>
     <script type="text/javascript" src="resources/js/spin.min.js"></script>
     <script type="text/javascript" src="resources/js/angular-spinner.js"></script>
-
+    <script type="text/javascript" src="resources/js/canvasjs.min.js"></script>    
+    <script type="text/javascript" src="resources/js/jquery-ui.js"></script> 
   
     <script src="./app.js"></script>
     <script src="./routes.js"></script>    
@@ -80,9 +84,14 @@
     <script src="dashboard/dashboard.component.js"></script>
     <script src="dashboard/dashboard.service.js"></script>
     <script src="bidding/bidding.component.js"></script>
+    <script src="bidding/allCommodityBidList.component.js"></script>
     <script src="bidding/bidding.service.js"></script>
     <script src="mybiddinghistory/mybidinghistory.component.js"></script>
     <script src="mybiddinghistory/mybidinghistory.service.js"></script>
+    <script src="bank/bankDetails.component.js"></script>
+    <script src="bank/bankDetails.service.js"></script>
+    <script src="reports/reports.component.js"></script>
+    <script src="reports/reports.service.js"></script>
   <span us-spinner="{radius:10, width:5, length: 10}" spinner-key="spinner-1"></span>
   </body>
 </html>

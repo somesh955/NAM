@@ -5,12 +5,16 @@
 
     .controller('authController',['$scope', '$rootScope', 'AuthServ', '$state', 'UtilsServ', 'growl', 'LoggerServ', '$translatePartialLoader', '$translate', 'AppConstant','$window' ,function($scope, $rootScope, AuthServ, $state, UtilsServ, growl, LoggerServ, $translatePartialLoader, $translate, AppConstant, $window){
         
-        $rootScope.preferredLanguage = function(lang){
-            $translate.use(lang+"-IN");
-        }; 
+        $scope.onInit = function(){
+            $scope.user ={};
+            $rootScope.preferredLanguage = function(lang){
+                $translate.use(lang+"-IN");
+            }; 
+            $translatePartialLoader.addPart('login');
+            $translate.refresh();
+        };
 
-        $translatePartialLoader.addPart('login');
-        $translate.refresh();
+        
 
         $scope.login = function(){
             $scope.user.apiKey = AppConstant.API_KEY;
@@ -43,6 +47,8 @@
                     growl.error(response.responseHeader.errMsg);
                 } 
             });
-        }
+        };
+
+        $scope.onInit();
     }]);
 })();

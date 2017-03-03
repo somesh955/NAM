@@ -1,7 +1,7 @@
 (function(){
 	
 	angular.module('myApp.dashboardService',[])
-	.factory('BiddingServ',function($resource, $http, $httpParamSerializer, AppConstant){
+	.factory('DashboardcServ',function($resource, $http, $httpParamSerializer, AppConstant){
 		var bidColumnList = [{//Define the Table content
 	      	name: "oprName", //The identifier name
 	      	display: "APMC" //the name that will be displayed
@@ -83,9 +83,12 @@
 		      display: "Extended Date"
 		}];
 
-
+		var getTradeHistory = function(){
+			return $resource(AppConstant.APP_URL+'/dashboard/getTradeHistory'); 
+		};
 
 		return {
+
 			"getDetails": function(){
 				return $resource(AppConstant.WEB_URL+'/resources/data/biddingDetails.json');				
 
@@ -116,7 +119,8 @@
 			},
 			"getColumnList" : function(){
 				return bidColumnList;
-			}
+			},
+			"getTradeHistory" : getTradeHistory,
 		}
 
 	});

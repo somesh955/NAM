@@ -11,7 +11,12 @@
                 url: '/',
                 templateUrl: './home/home.component.html',
                 controller: 'homeController'               
-            })            
+            })   
+            .state('login', {
+                url: '/login',
+                templateUrl: './auth/login.component.html',
+                controller: 'authController'    
+            })         
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: './dashboard/dashboard.component.html',
@@ -28,16 +33,34 @@
                    authRequired: true
                 }
             }) 
-			
-            .state('login', {
-                url: '/login',
-                templateUrl: './auth/login.component.html',
-                controller: 'authController'    
+            .state('allCommodityBidlist', {
+                url: '/allCommodityBidlist',
+                templateUrl: './bidding/allCommodityBidlist.component.html',
+                controller: 'allCommodityBidListController',
+                data: {
+                   authRequired: true
+                }
             })
             .state('myBidHistory', {
                 url: '/myBidHistory',
                 templateUrl: './mybiddinghistory/mybidinghistory.component.html',
                 controller: 'bidhistoryController',
+                data: {
+                   authRequired: true
+                }             
+            })
+            .state('bankDetails', {
+                url: '/bankDetails',
+                templateUrl: './bank/bankDetails.component.html',
+                controller: 'bankDetailsController',
+                data: {
+                   authRequired: true
+                }             
+            })
+            .state('reports', {
+                url: '/reports',
+                templateUrl: './reports/reports.component.html',
+                controller: 'reportsController',
                 data: {
                    authRequired: true
                 }             

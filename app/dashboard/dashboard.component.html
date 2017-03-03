@@ -1,3 +1,4 @@
+
 <section class="content-section">
 	<div class="container" >
 		<div class="row">
@@ -78,7 +79,7 @@
 		<div class="row">
 			<div class="col-sm-12"> 
 				<!-- PAGE CONTENT BEGINS -->
-				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
+				<div class="col-xs-12 col-sm-6 col-md-3 panel-table" id="">
 
 					<div class="panel panel-color ">
 						<h4 class="panel-heading">My Preferred Commodities </h4>
@@ -94,61 +95,15 @@
 						</table>
 					     
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
+				<div class="col-xs-12 col-sm-6 col-md-3 panel-table" id="">
 
 					<div class="panel panel-color">
 						<h4 class="panel-heading"> My Trade Details </h4>
 					</div>
 					
-						<table class="table  table-bordered">
-							<thead>
-
-							</thead>
-							<tbody>
-								<tr>
-									<td class=""></td>
-									<td class=""></td>
-									<td class=""></td>
-									<td class=""></td>
-									<td class=""></td>
-								</tr>
-							
-							</tbody>
-						</table>
+						<div id="pieChartTeadeContainer" style="height: 250px; width: 100%;"></div>
 					   
-				</div>    
-				<div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
-					<div class="panel  panel-color">
-						<h4 class="panel-heading"> My Permits  </h4>
-					</div>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Invoice </th>
-								<th>Date</th>
-								<th>Lot code</th>
-								<th>Seller Name </th>
-								<th>Agent Name</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-								<td class=""></td>
-							</tr>
-							      
-						</tbody>
-					</table>
-
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12"> 
-				<!-- PAGE CONTENT BEGINS -->
+				</div>  
 				<div class="col-xs-12 col-sm-6 col-md-6  panel-table" id="widget-container-col-2">
 					<div class="panel panel-color ">
 						<h4 class="panel-heading"> Outcry/Auction Won </h4>
@@ -174,9 +129,67 @@
 							</tbody>
 						</table>
 					
-				</div>
+				</div>  
+				<!-- <div class="col-xs-12 col-sm-6 col-md-4 panel-table" id="">
+					<div class="panel  panel-color">
+						<h4 class="panel-heading"> My Permits  </h4>
+					</div>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Invoice </th>
+								<th>Date</th>
+								<th>Lot code</th>
+								<th>Seller Name </th>
+								<th>Agent Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class=""></td>
+								<td class=""></td>
+								<td class=""></td>
+								<td class=""></td>
+								<td class=""></td>
+							</tr>
+							      
+						</tbody>
+					</table>
 
-				<div class="col-xs-12 col-sm-6 col-md-6 panel-table" id="widget-container-col-2">
+				</div> -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12"> 
+				<!-- PAGE CONTENT BEGINS -->
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6  panel-table" id="widget-container-col-2">
+					<div class="panel panel-color ">
+						<h4 class="panel-heading"> Outcry/Auction Won </h4>
+					</div>
+					
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Auction Type </th>
+									<th>Commodity</th>
+									<th>Lot code</th>
+									<th>Bid Rate</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="outrcrylist in outcry.allWinningBidsModel">
+									<td class="">{{outrcrylist.auctionType}}</td>
+									<td class="">{{outrcrylist.commodity}}</td>
+									<td class="">{{outrcrylist.lotCode}}</td>
+									<td class="">{{outrcrylist.bidRate}}</td>
+								</tr>
+
+							</tbody>
+						</table>
+					
+				</div> -->
+
+				<!-- <div class="col-xs-12 col-sm-6 col-md-6 panel-table" id="widget-container-col-2">
 
 					<div class="panel panel-color">
 						<h4 class="panel-heading"> Security Deposit Details </h4>
@@ -203,7 +216,7 @@
 							</tbody>
 						</table>
 				</div>
-			</div>
+			</div> -->
 		</div><br>
 	</div>	
 </section>

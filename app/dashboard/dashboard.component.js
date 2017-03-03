@@ -3,10 +3,10 @@
 
 	angular.module('myApp.dashboardCtrl',[])
 
-	.controller('dashboardController', ['$scope', 'MenuService','$http','AppConstant',function($scope, MenuService,$http,AppConstant){        
+	.controller('dashboardController', ['$scope', 'MenuService','$http','AppConstant','DashboardcServ','UtilsServ',function($scope, MenuService,$http,AppConstant,DashboardcServ,UtilsServ){        
 
 	     $scope.onInit = function(){
-	     	
+	     	//$scope.txtsrchdate=UtilsServ.getCurrentDate();
 	     };
 		 $scope.txtsrchdate="";
 		 $scope.txtlotcode="";
@@ -43,8 +43,38 @@
 			}
 			$scope.getsearchdata(srchdate);
 			$scope.getinvoicedtl(srchdate,$scope.txtlotcode,$scope.txtinvno);
-				
-		}
+	var dataPoints=[];		
+var chart = new CanvasJS.Chart("pieChartTeadeContainer",
+{
+		title:{
+			/*text: "Gaming Consoles Sold in 2012"*/
+		},
+		legend: {
+			maxWidth: 350,
+			itemWidth: 100
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			toolTipContent: "{y} - #percent %",
+			legendText: "{label}",
+		
+			/*click: onClick,*/
+		   dataPoints: dataPoints		
+		 
+		}]
+	});
+
+			DashboardcServ.getTradeHistory().save({"tradeHistoryRequest": {"fromDate": srchdate,"toDate":srchdate}},function(response, status){
+				console.log(response);
+				for (var i = 0; i < response.tradeHistory.length; i++) {
+					   dataPoints.push({ y: +response.tradeHistory[i].tradeCount, label: response.tradeHistory[i].tradeStatus });
+					}
+					chart.options.data.dataPoints = dataPoints;		
+					chart.render();
+			});
+		};
 		
 		$scope.getsearchdata=function(srchdt) {
 			var winbiddata={

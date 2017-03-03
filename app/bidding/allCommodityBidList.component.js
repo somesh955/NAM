@@ -35,19 +35,25 @@
 	     };
 				 
 	     $scope.addCommodity = function(selectedCommodity){
-	     	Spinner.startSpin();
-	     	BiddingServ.setPreferredCommodity().save({"preferredCommodityRequest" :{"commodityId": selectedCommodity}},function(response){
-        		
-                if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
-                    LoggerServ.log(response);
-                    $scope.onInit();
-                    Spinner.stopSpin();
-        		}else{
-                    LoggerServ.log(response);
-        			growl.error(response.responseHeader.errMsg);
-        			Spinner.stopSpin();
-        		}        		
-        	});
+            if(selectedCommodity == undefined){
+            growl.error("Please select commodity");
+            }
+            else{
+    	     	Spinner.startSpin();
+    	     	BiddingServ.setPreferredCommodity().save({"preferredCommodityRequest" :{"commodityId": selectedCommodity}},function(response){
+            		
+                    if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+                        LoggerServ.log(response);
+                        $scope.onInit();
+                        growl.success("Successfully select commodity");
+                        Spinner.stopSpin();
+            		}else{
+                        LoggerServ.log(response);
+            			growl.error(response.responseHeader.errMsg);
+            			Spinner.stopSpin();
+            		}        		
+            	});
+            }
 	     };
 
          $scope.deleteCommodity=function(deleteCommodity){
@@ -57,6 +63,7 @@
                 if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
                     LoggerServ.log(response);
                     $scope.onInit();
+                    growl.success("Successfully deleted commodity");
                     Spinner.stopSpin();
                 }else{
                     LoggerServ.log(response);

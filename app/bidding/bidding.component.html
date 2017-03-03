@@ -60,7 +60,7 @@
             <div class="row form-group">
               <div class="col-md-4 col-sm-4 col-xs-12 "><label>Lot Code </label></div>
               <div class="col-md-7 col-sm-8 col-xs-12 ">
-                <input type="text" ng-model="bid.lotCode" class="form-control"/>
+                <input type="text" ng-model="bid.lotId" class="form-control"/>
               </div>
             </div>
           </div>
@@ -118,7 +118,10 @@
           <div class="col-xs-12 col-sm-12 " id="">
             <div class="table-horizaontal table-horizaontal-bid table-vertical">
               <div id="list-wrapper">
-                <div class="list" infinite-scroll='getbidGridList(bid)' 
+                <!-- <div class="list" infinite-scroll='getbidGridList(bid)' 
+                infinite-scroll-distance='1' 
+                infinite-scroll-container="'#list-wrapper'"> -->
+                <div class="list" 
                 infinite-scroll-distance='1' 
                 infinite-scroll-container="'#list-wrapper'">
                 <div class="list-table" >
@@ -131,16 +134,16 @@
                         <th>Agent</th>
                         <th>No.of<br>Bags</th>
                         <th>QTY</th>
-                        <th>Mind Bid</th>
+                        <th>Min Bid</th>
                         <th>Last Bid</th>
                         <th>My Bid</th>
-                        <th>Time<br>Remaing<br>(HH:MM)</th>
+                        <th>Time<br>Remaing<br>(D:H:M)</th>
                         <th>New Bid</th>
                         <th>Bid</th>
-                        <th>Certificate</th>
-                        <th>seller</th>
+                        <th ng-show="hidden">Certificate</th>
+                        <th>Seller</th>
                         <th>Village</th>
-                        <th>Test Result</th>
+                        <th ng-show="hidden">Test Result</th>
                         <th ng-show="hidden">Start Date</th>
                         <th ng-show="hidden">End Date</th>
                         <th ng-show="hidden">Re-Bid<br>Allowed</th>
@@ -162,25 +165,25 @@
                                 
                                 <td><span class="span-hd span-bid-left">Commodity Uom Qty </span><span class="span-bid-right">{{bidValue.wbWeight}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">Mind Bid</span><span class="span-bid-right">{{bidValue.mspBidRate}}</span></td>
+                                <td><span class="span-hd span-bid-left">Min Bid</span><span class="span-bid-right">{{bidValue.mspBidRate}}</span></td>
                                 
                                 <td><span class="span-hd span-bid-left">Last Bid</span><span class="span-bid-right">{{bidValue.maxOpenBidVal}}</span></td>
                                 
                                 <td><span class="span-hd span-bid-left">My Bid</span><span class="span-bid-right">{{bidValue.lastBidVal}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">Time Remaing(HH:MI)</span> <span class="span-bid-right">{{dateDifference(bidValue.endDate)}}</span></td>
+                                <td><span class="span-hd span-bid-left">Time Remaing(D:H:M)</span> <span class="span-bid-right">{{dateDifference(bidValue.endDate)}}</span></td>
                                 
                                 <td><span class="span-hd span-bid-left">New Bid </span><span  class="span-bid-right"><input type="number" min="0"ng-model="bidValue.bidRate" class="form-control bidW"  ng-blur="postMultiBid(bidValue)"/> </span> </td>
                                 
                                 <td><span class="span-hd span-bid-left">Bid </span><span  class="span-bid-right"><button class="btn btn-deafult" type="button" ng-click="bidSubmission(bidValue)" >Bid</button></span></td>
                                 
-                                <td><span class="span-hd span-bid-left">Certificate </span><span class="span-bid-right"><button class="btn btn-deafult" type="button">Show</button></span></td>
+                                <td ng-show="hidden"><span class="span-hd span-bid-left">Certificate </span><span class="span-bid-right"><button class="btn btn-deafult" type="button">Show</button></span></td>
 
-                                <td nowrap><span class="span-hd span-bid-left">seller </span><span class="span-bid-right">{{bidValue.seller}}</span></td>
+                                <td nowrap><span class="span-hd span-bid-left">Seller </span><span class="span-bid-right">{{bidValue.seller}}</span></td>
                                 
                                 <td><span class="span-hd span-bid-left">Village </span><span>{{bidValue.village}}</span></td>
                                 
-                                <td><span class="span-hd span-bid-left">Test Result </span><span class="span-bid-right"><button class="btn btn-deafult" type="button">Show</button></span></td>
+                                <td ng-show="hidden"><span class="span-hd span-bid-left">Test Result </span><span class="span-bid-right"><button class="btn btn-deafult" type="button">Show</button></span></td>
                                 
                                 <td ng-show="hidden"><span class="span-hd span-bid-left">Start Date </span><span class="span-bid-right">{{dateConverter(bidValue.startDate)}}</span></td>
                                 
