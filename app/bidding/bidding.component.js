@@ -66,24 +66,26 @@
 		 
         $scope.dateDifference = function(endDate){
             return UtilsServ.getDateDifference(new Date(), endDate);
-        } 
+        }; 
 
 	    $scope.getbidGridList=function(bid){
-			Spinner.startSpin();
-			$rootScope.bid=bid;
-            $scope.bidingGrid = [];
-			BiddingServ.getBidList().save({"newBidRequest" :bid},function(response){
-    			if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
-                    LoggerServ.log(response);
-                    $scope.bidingGrid = response.newBids;
-                    $scope.bidList = [];
-                    Spinner.stopSpin();
-        		}else{
-                    LoggerServ.log(response);
-        			growl.error(response.responseHeader.errMsg);
-        			Spinner.stopSpin();
-        		}        		
-        	});			
+            if(!UtilsServ.isUndefinedOrNull(bid)){
+                Spinner.startSpin();
+                $rootScope.bid=bid;
+                //$scope.bidingGrid = [];
+                BiddingServ.getBidList().save({"newBidRequest" :bid},function(response){
+                    if(response.responseHeader.statusMsg === UtilsServ.responseType.EXECUTED){
+                        LoggerServ.log(response);
+                        $scope.bidingGrid = response.newBids;
+                        $scope.bidList = [];
+                        Spinner.stopSpin();
+                    }else{
+                        LoggerServ.log(response);
+                        growl.error(response.responseHeader.errMsg);
+                        Spinner.stopSpin();
+                    }               
+                }); 
+            }					
 		 };
 		 	 
 	
